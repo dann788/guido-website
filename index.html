@@ -6,16 +6,16 @@
   One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
   Scroll motion: CSS scroll-driven animations and an inline script, no libraries. A GSAP build of this page: index.gsap.html.
 -->
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Onda — brand, product and AI studio</title>
-<meta name="description" content="Onda is an independent brand, product and AI studio in Lisbon and Brooklyn. We make the things people come back to.">
+<title>Guido — brand, product and AI studio</title>
+<meta name="description" content="Guido is an independent brand, product and AI studio in Lisbon and Brooklyn. We make the things people come back to.">
 <meta name="generator" content="8B Templates">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Onda — brand, product and AI studio">
-<meta property="og:description" content="Onda is an independent brand, product and AI studio in Lisbon and Brooklyn. We make the things people come back to.">
+<meta property="og:title" content="Guido — brand, product and AI studio">
+<meta property="og:description" content="Guido is an independent brand, product and AI studio in Lisbon and Brooklyn. We make the things people come back to.">
 <meta property="og:image" content="https://your-domain.example/preview.png" data-8b-placeholder="og-image">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%236c3cff'%2F%3E%3Ctext%20x%3D'32'%20y%3D'45'%20font-family%3D'Arial%2CHelvetica%2Csans-serif'%20font-size%3D'38'%20font-weight%3D'700'%20text-anchor%3D'middle'%20fill%3D'%23ffffff'%3EO%3C%2Ftext%3E%3C%2Fsvg%3E" data-8b-placeholder="favicon">
@@ -111,13 +111,13 @@
 <style data-8b-part="tokens">
 @layer tokens {
 :root {
-  --color-1: #0d0c11;
-  --color-2: #ffffff;
-  --color-3: #6c3cff;
-  --color-4: #efeef4;
-  --color-5: #aaa7b4;
-  --color-6: #5d5a67;
-  --color-7: #1f1d26;
+  --color-1: #080808;
+  --color-2: #F5F5F0;
+  --color-3: #080808;
+  --color-4: #F5F5F0;
+  --color-5: #9CA3AF;
+  --color-6: #080808;
+  --color-7: #080808;
   --font-1: "Gabarito", "Gabarito Fallback", "Arial Black", Arial, sans-serif;
   --font-2: "Onest", "Onest Fallback", Arial, sans-serif;
   --radius-1: 28px;
@@ -201,6 +201,9 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #navigation .nav__cta { box-shadow: var(--shadow-3); }
 #navigation .nav__links a { display: block; margin: 0 14px; padding-block: 14px; }
 #navigation .nav__links a::after { bottom: 10px; }
+#navigation .nav__languages { display: inline-flex; align-items: center; gap: 2px; padding: 4px; border-radius: var(--radius-2); background: var(--color-1); color: var(--color-2); }
+#navigation .nav__language { min-width: 32px; min-height: 40px; padding: 0 7px; border: 0; border-radius: var(--radius-2); background: transparent; color: inherit; font-family: var(--font-2); font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer; }
+#navigation .nav__language[aria-pressed="true"] { background: var(--color-2); color: var(--color-1); }
 #navigation .nav__menu { display: none; margin-left: auto; }
 #navigation .menu { position: fixed; inset: 0; z-index: 60; display: grid; grid-template-rows: auto 1fr auto; padding: 14px var(--space-1) 32px; background: var(--color-1); color: var(--color-2); overflow-y: auto; }
 #navigation .menu[hidden] { display: none; }
@@ -210,15 +213,21 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #navigation .menu__foot { color: var(--color-5); }
 @media (max-width: 899px) {
   #navigation .nav__links, #navigation .nav__cta { display: none; }
-  #navigation .nav__menu { display: inline-flex; }
+  #navigation .nav__languages { margin-left: auto; }
+  #navigation .nav__menu { display: inline-flex; margin-left: 0; }
 }
 }
 </style>
 <style data-8b-part="section:hero">
 @layer sections {
 #hero { --ap: min(74vw, 44svh); position: relative; z-index: 3; display: grid; grid-template-rows: 1fr auto; min-height: max(100svh, 560px); padding: 0 var(--space-1); background: var(--color-1); color: var(--color-2); overflow: clip visible; }
-#hero .hero__intro { display: grid; justify-items: start; align-content: start; gap: 18px; max-width: 32rem; padding-top: clamp(92px, 14svh, 150px); }
-#hero .hero__lead { color: var(--color-2); }
+#hero .hero__intro { display: grid; justify-self: start; justify-items: start; align-content: center; box-sizing: border-box; width: calc(100vw - 2 * var(--space-1)); padding: clamp(86px, 12svh, 130px) 0 clamp(24px, 5svh, 64px) 18px; text-align: left; }
+#hero .hero__lead { width: min(100%, 36rem); color: var(--color-2); font-size: clamp(21px, 1.9vw, 28px); }
+#hero .hero__lead-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+#hero .hero__lead-visual { display: block; }
+#hero .hero__lead-word, #hero .hero__lead-char { display: inline-block; }
+#hero .hero__lead-word { white-space: nowrap; }
+#hero .hero__lead.is-typing .hero__lead-char { opacity: 0; transform: translateY(0.32em); animation: hero-lead-type 0.35s var(--char-delay, 0ms) cubic-bezier(.22, 1, .36, 1) forwards; }
 #hero .hero__title { position: static; align-self: end; padding-bottom: clamp(18px, 5svh, 52px); white-space: nowrap; }
 #hero .hero__word, #hero .hero__mask, #hero .hero__glyphs { display: inline-block; }
 #hero .hero__period { position: static; display: inline-block; width: 0.19em; height: 0.19em; margin-left: 0.035em; border-radius: var(--radius-2); background: var(--color-3); vertical-align: baseline; }
@@ -228,6 +237,10 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #hero .hero__tint { position: absolute; inset: 0; background: var(--color-3); opacity: 0; }
 #hero .hero__orbit { position: absolute; inset: -9%; display: block; border-radius: var(--radius-2); border: 1px solid color-mix(in srgb, var(--color-2) 16%, transparent); }
 #hero .hero__moon { position: absolute; left: 50%; top: 0; width: 9%; height: 9%; margin: -4.5% 0 0 -4.5%; border-radius: var(--radius-2); background: var(--color-3); }
+@keyframes hero-lead-type { to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 899px) {
+  #hero .hero__intro { align-content: start; padding-top: clamp(132px, 20svh, 176px); padding-bottom: 32px; }
+}
 @media (min-width: 900px) and (orientation: landscape) {
   #hero { --ap: min(36vw, 60svh); }
   #hero .hero__title { font-size: min(26.5vw, 43svh); }
@@ -250,6 +263,9 @@ textarea.m-field { min-height: 112px; resize: vertical; }
   @keyframes hero-lift { from { transform: translateY(26px); } }
   @keyframes hero-turn { to { transform: rotate(360deg); } }
   @keyframes hero-orbit { to { transform: rotate(360deg); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero__lead.is-typing .hero__lead-char { opacity: 1; transform: none; animation: none; }
 }
 }
 </style>
@@ -699,27 +715,26 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <a class="skip" href="#main">Skip to content</a>
 <!-- navigation: fixed top bar: wordmark, section links, Start a project button; phone menu overlay -->
 <header id="navigation" class="nav" data-8b-section="navigation">
-  <a class="nav__brand" href="#hero" aria-label="Onda, back to the top">Onda<span class="m-dot" aria-hidden="true"></span></a>
+  <a class="nav__brand" href="#hero" aria-label="Guido, back to the top">Guido<span class="m-dot" aria-hidden="true"></span></a>
   <nav class="nav__links" aria-label="Main">
     <ul data-8b-items=":scope > li">
-      <li><a class="m-link-2" href="#work">Work</a></li>
-      <li><a class="m-link-2" href="#capabilities">Services</a></li>
-      <li><a class="m-link-2" href="#method">Approach</a></li>
-      <li><a class="m-link-2" href="#studio">Studio</a></li>
-      <li><a class="m-link-2" href="#journal">Journal</a></li>
+      <li><a class="m-link-2" href="#capabilities"><span data-i18n="nav.services">Servicios</span></a></li>
+      <li><a class="m-link-2" href="#work"><span data-i18n="nav.projects">Proyectos</span></a></li>
     </ul>
   </nav>
-  <a class="m-btn nav__cta" href="#contact"><span class="m-btn__label">Start a project</span></a>
+  <div class="nav__languages" role="group" aria-label="Seleccionar idioma" data-i18n-aria-label="languageSelector">
+    <button class="nav__language" type="button" lang="es" data-language="es" aria-label="Español" aria-pressed="true">ES</button>
+    <button class="nav__language" type="button" lang="pt-PT" data-language="pt-PT" aria-label="Português" aria-pressed="false">PT</button>
+    <button class="nav__language" type="button" lang="en" data-language="en" aria-label="English" aria-pressed="false">EN</button>
+  </div>
+  <a class="m-btn nav__cta" href="#contact"><span class="m-btn__label" data-i18n="nav.talk">Hablemos</span></a>
   <button class="m-btn-2 nav__menu" type="button" aria-expanded="false" aria-controls="menu"><span class="m-btn__label">Menu</span></button>
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
     <div class="menu__top"><button class="m-icon menu__close" type="button" aria-label="Close the menu"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
     <ul class="menu__list" data-8b-items=":scope > li">
-      <li><a href="#work">Work<span class="m-dot" aria-hidden="true"></span></a></li>
-      <li><a href="#capabilities">Services<span class="m-dot" aria-hidden="true"></span></a></li>
-      <li><a href="#method">Approach<span class="m-dot" aria-hidden="true"></span></a></li>
-      <li><a href="#studio">Studio<span class="m-dot" aria-hidden="true"></span></a></li>
-      <li><a href="#journal">Journal<span class="m-dot" aria-hidden="true"></span></a></li>
-      <li><a href="#contact">Contact<span class="m-dot" aria-hidden="true"></span></a></li>
+      <li><a href="#capabilities"><span data-i18n="nav.services">Servicios</span><span class="m-dot" aria-hidden="true"></span></a></li>
+      <li><a href="#work"><span data-i18n="nav.projects">Proyectos</span><span class="m-dot" aria-hidden="true"></span></a></li>
+      <li><a href="#contact"><span data-i18n="nav.talk">Hablemos</span><span class="m-dot" aria-hidden="true"></span></a></li>
     </ul>
     <p class="m-text menu__foot">hello@onda.example · Lisbon and Brooklyn</p>
   </div>
@@ -728,10 +743,12 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- hero: first screen: a one-word greeting whose full stop is a giant round photo (demo: "Hello") (animation: scene:hero) -->
 <section id="hero" data-8b-section="hero" aria-labelledby="hero-title">
   <div class="hero__intro">
-    <p class="m-text-5 hero__lead">We're Onda, an independent brand, product and AI studio. We make things people come back to, and we'd love to hear what you're making.</p>
-    <a class="m-link hero__link" href="#work"><span class="m-link__label">See the work</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a>
+    <p class="m-text-5 hero__lead" aria-live="polite">
+      <span class="hero__lead-sr" data-i18n="hero.lead">Hacemos que la tecnología trabaje para tu negocio.</span>
+      <span class="hero__lead-visual" aria-hidden="true">Hacemos que la tecnología trabaje para tu negocio.</span>
+    </p>
   </div>
-  <h1 class="m-text-2 hero__title" id="hero-title" style="--len:5"><span class="hero__word"><span class="hero__mask"><span class="hero__glyphs">Hello</span></span></span><span class="hero__period" aria-hidden="true"><span class="hero__stage"><span class="hero__orbit"><span class="hero__moon"></span></span><span class="hero__aperture"><img class="hero__img" src="https://images.unsplash.com/photo-1754738381783-f9a2847bfef2?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cHVycGxlJTIwYWJzdHJhY3QlMjAzZCUyMHNoYXBlfGVufDF8Mnx8fDE3OTEyMDk2Mjd8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=470&amp;h=470&amp;q=60" width="1200" height="1200" alt="" fetchpriority="high"><span class="hero__tint"></span></span></span></span></h1>
+  <h1 class="m-text-2 hero__title" id="hero-title" style="--len:5"><span class="hero__word"><span class="hero__mask"><span class="hero__glyphs">Guido</span></span></span><span class="hero__period" aria-hidden="true"><span class="hero__stage"><span class="hero__orbit"><span class="hero__moon"></span></span><span class="hero__aperture"><img class="hero__img" src="https://images.unsplash.com/photo-1754738381783-f9a2847bfef2?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cHVycGxlJTIwYWJzdHJhY3QlMjAzZCUyMHNoYXBlfGVufDF8Mnx8fDE3OTEyMDk2Mjd8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=470&amp;h=470&amp;q=60" width="1200" height="1200" alt="" fetchpriority="high"><span class="hero__tint"></span></span></span></span></h1>
 </section>
 
 <!-- statement: two-line statement of what the studio does, a lead paragraph and an index of links into the page (animation: scene:statement) -->
@@ -1033,6 +1050,79 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   <div class="footer__legal m-text-6"><p>© 2026 Onda Studio · Design: <a href="https://8b.com/" style="color:inherit" data-8b-credit>8B</a></p><p>Made in Lisbon and Brooklyn</p></div>
 </footer>
 
+<script>
+(() => {
+  const config = {
+    supported: ['es', 'pt-PT', 'en'],
+    storageKey: 'guido-language',
+    paths: { es: '/es/', 'pt-PT': '/pt/', en: '/en/' },
+    translations: {
+      es: {
+        languageSelector: 'Seleccionar idioma',
+        nav: { services: 'Servicios', projects: 'Proyectos', talk: 'Hablemos' },
+        hero: { lead: 'Hacemos que la tecnología trabaje para tu negocio.' }
+      },
+      'pt-PT': {
+        languageSelector: 'Selecionar idioma',
+        nav: { services: 'Serviços', projects: 'Projetos', talk: 'Fale connosco' },
+        hero: { lead: 'Fazemos com que a tecnologia trabalhe para o seu negócio.' }
+      },
+      en: {
+        languageSelector: 'Select language',
+        nav: { services: 'Services', projects: 'Projects', talk: "Let's talk" },
+        hero: { lead: 'We make technology work for your business.' }
+      }
+    }
+  };
+
+  const matchLanguage = value => {
+    const code = String(value || '').toLowerCase();
+    if (code === 'es' || code.startsWith('es-')) return 'es';
+    if (code === 'pt' || code.startsWith('pt-')) return 'pt-PT';
+    if (code === 'en' || code.startsWith('en-')) return 'en';
+    return null;
+  };
+  const detectLanguage = () => {
+    const preferences = navigator.languages?.length ? navigator.languages : [navigator.language];
+    return preferences.map(matchLanguage).find(Boolean) || 'es';
+  };
+  const readPreference = () => {
+    try {
+      const saved = localStorage.getItem(config.storageKey);
+      return config.supported.includes(saved) ? saved : null;
+    } catch {
+      return null;
+    }
+  };
+  const getTranslation = (language, key) => key.split('.').reduce((value, part) => value?.[part], config.translations[language]);
+  const setLanguage = (language, persist = false) => {
+    if (!config.supported.includes(language)) language = 'es';
+    document.documentElement.lang = language;
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18n);
+      if (typeof value === 'string') element.textContent = value;
+    });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nAriaLabel);
+      if (typeof value === 'string') element.setAttribute('aria-label', value);
+    });
+    document.querySelectorAll('[data-language]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.language === language));
+    });
+    if (persist) {
+      try { localStorage.setItem(config.storageKey, language); } catch {}
+    }
+    document.dispatchEvent(new CustomEvent('guido:languagechange', { detail: { language, futurePath: config.paths[language] } }));
+  };
+
+  document.querySelectorAll('[data-language]').forEach(button => {
+    button.addEventListener('click', () => setLanguage(button.dataset.language, true));
+  });
+  const initialLanguage = readPreference() || detectLanguage();
+  setLanguage(initialLanguage);
+  window.GuidoI18n = Object.freeze({ ...config, setLanguage });
+})();
+</script>
 <script data-8b-part="section-script:navigation">
 (() => {
   const nav = document.getElementById('navigation');
@@ -1062,6 +1152,51 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   const hero = document.getElementById('hero');
   if (!('IntersectionObserver' in window)) return;
   new IntersectionObserver(([entry]) => hero.classList.toggle('is-offscreen', !entry.isIntersecting)).observe(hero);
+})();
+</script>
+<script>
+(() => {
+  const lead = document.querySelector('#hero .hero__lead');
+  const source = lead.querySelector('.hero__lead-sr');
+  const visual = lead.querySelector('.hero__lead-visual');
+  let finishTimer;
+
+  const render = animate => {
+    const text = source.textContent.trim();
+    const tokens = text.split(/(\s+)/);
+    const characterCount = Array.from(text).filter(character => !/\s/u.test(character)).length;
+    let characterIndex = 0;
+    visual.replaceChildren();
+    lead.classList.toggle('is-typing', animate);
+
+    tokens.forEach(token => {
+      if (/^\s+$/u.test(token)) {
+        visual.append(document.createTextNode(token));
+        return;
+      }
+      const word = document.createElement('span');
+      word.className = 'hero__lead-word';
+      Array.from(token).forEach(character => {
+        const letter = document.createElement('span');
+        letter.className = 'hero__lead-char';
+        letter.textContent = character;
+        if (animate) {
+          const delay = characterCount > 1 ? characterIndex / (characterCount - 1) * 2150 : 0;
+          letter.style.setProperty('--char-delay', `${Math.round(delay)}ms`);
+        }
+        word.append(letter);
+        characterIndex += 1;
+      });
+      visual.append(word);
+    });
+
+    clearTimeout(finishTimer);
+    if (animate) finishTimer = setTimeout(() => lead.classList.remove('is-typing'), 2500);
+  };
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  render(!reduceMotion);
+  document.addEventListener('guido:languagechange', () => render(false));
 })();
 </script>
 
