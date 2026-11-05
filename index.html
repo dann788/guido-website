@@ -201,7 +201,7 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #navigation .nav__cta { box-shadow: var(--shadow-3); }
 #navigation .nav__links a { display: block; margin: 0 14px; padding-block: 14px; }
 #navigation .nav__links a::after { bottom: 10px; }
-#navigation .nav__languages { display: inline-flex; align-items: center; gap: 2px; padding: 4px; border-radius: var(--radius-2); background: var(--color-1); color: var(--color-2); }
+#navigation .nav__languages { display: inline-flex; align-items: center; gap: 2px; margin-left: auto; padding: 4px; border-radius: var(--radius-2); background: var(--color-1); color: var(--color-2); }
 #navigation .nav__language { min-width: 32px; min-height: 40px; padding: 0 7px; border: 0; border-radius: var(--radius-2); background: transparent; color: inherit; font-family: var(--font-2); font-size: 13px; font-weight: 600; line-height: 1; cursor: pointer; }
 #navigation .nav__language[aria-pressed="true"] { background: var(--color-2); color: var(--color-1); }
 #navigation .nav__menu { display: none; margin-left: auto; }
@@ -276,6 +276,7 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #statement .statement__line { display: block; }
 #statement .statement__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; margin-top: clamp(56px, 11vh, 120px); }
 #statement .statement__lead { max-width: 36rem; }
+#statement .statement__index { min-width: 0; width: calc(100% - clamp(20px, 2vw, 28px)); margin: 36px 0 0 clamp(20px, 2vw, 28px); }
 #statement .statement__index ul { display: grid; gap: 12px; }
 @media (min-width: 900px) {
   #statement .statement__body { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: start; }
@@ -287,20 +288,25 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 @layer sections {
 #work { position: relative; color: var(--color-2); }
 #work .work__plate { position: absolute; inset: 0 0 -2px; background: var(--color-1); }
-#work .work__stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: clamp(28px, 4vh, 48px); padding: var(--space-2) var(--space-1); }
+#work .work__stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: clamp(18px, 2.5vh, 28px); padding: var(--space-2) var(--space-1); }
 #work .work__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; }
 #work .work__lead { max-width: 25rem; color: var(--color-5); }
 #work .work__track { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
-#work .case { position: relative; display: block; overflow: hidden; border-radius: var(--radius-1); background: var(--color-7); aspect-ratio: 4 / 5; }
-#work .case__media { position: absolute; inset: 0; overflow: hidden; }
-#work .case__img { position: absolute; top: 0; left: -7%; width: 114%; max-width: none; height: 100%; object-fit: cover; }
-#work .case__media::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(to top, color-mix(in srgb, var(--color-1) 82%, transparent), transparent); }
-#work .case__tag { position: absolute; left: clamp(18px, 2vw, 28px); top: clamp(18px, 2vw, 28px); background: color-mix(in srgb, var(--color-1) 62%, transparent); }
-#work .case__text { position: absolute; left: clamp(18px, 2.4vw, 36px); right: clamp(18px, 2.4vw, 36px); bottom: clamp(18px, 2.4vw, 36px); display: grid; gap: 10px; }
-#work .case__line { max-width: 30rem; color: var(--color-2); }
+#work .case { position: relative; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(12px, 1.4vw, 18px); overflow: hidden; padding: clamp(18px, 2vw, 28px); border-radius: var(--radius-1); background: var(--color-7); aspect-ratio: 4 / 5; }
+#work .case__media { position: relative; min-width: 0; min-height: 0; overflow: hidden; border-radius: var(--radius-3); background: var(--color-1); }
+#work .case__img { position: relative; display: block; width: 100%; max-width: none; height: 100%; object-fit: contain; object-position: center; }
+#work .case__media::after { content: none; }
+#work .case__tag { position: static; align-self: start; justify-self: start; width: fit-content; max-width: 100%; min-height: 0; height: auto; padding: 6px 12px; border: 0; border-radius: var(--radius-2); background: #F5F5F0; color: #080808; line-height: 1.2; white-space: normal; }
+#work .case__text { position: static; display: grid; gap: 8px; min-width: 0; }
+#work .case__line { max-width: 30rem; color: var(--color-5); font-size: clamp(16px, 1.35vw, 20px); line-height: 1.3; }
 @media (min-width: 700px) {
   #work .work__track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  #work .case { aspect-ratio: 16 / 11; }
+  #work .case { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); grid-template-rows: auto minmax(0, 1fr); column-gap: clamp(20px, 2.5vw, 40px); aspect-ratio: 16 / 11; }
+  #work .case__tag { grid-column: 1; grid-row: 1; }
+  #work .case__media { grid-column: 2; grid-row: 1 / -1; }
+  #work .case__text { grid-column: 1; grid-row: 2; grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr); height: 100%; }
+  #work .case__name { grid-row: 2; align-self: center; }
+  #work .case__line { grid-row: 3; align-self: end; }
   #work .case:last-child:nth-child(odd) { grid-column: span 2; aspect-ratio: 16 / 6.5; }
 }
 }
@@ -310,15 +316,18 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #again { position: relative; background: var(--color-1); color: var(--color-2); }
 #again .again__stage { position: relative; padding: calc(var(--space-2) * 0.7) var(--space-1) var(--space-2); }
 #again .again__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; }
-#again .again__lead { max-width: 27rem; color: var(--color-5); }
+#again .again__head > h2 { width: 100%; }
 #again .again__swing { margin-top: clamp(40px, 7vh, 72px); }
 #again .again__wheel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 #again .partner__card { position: relative; display: block; overflow: hidden; border-radius: var(--radius-1); background: var(--color-7); aspect-ratio: 4 / 5; }
-#again .partner__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-#again .partner__card::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to top, color-mix(in srgb, var(--color-1) 86%, transparent), transparent); }
-#again .partner__text { position: absolute; z-index: 1; left: clamp(16px, 1.8vw, 26px); right: clamp(16px, 1.8vw, 26px); bottom: clamp(16px, 1.8vw, 26px); display: grid; justify-items: start; gap: 10px; }
+#again .partner:nth-child(1) .partner__card { background: #401080; }
+#again .partner:nth-child(2) .partner__card { background: #6221B5; }
+#again .partner:nth-child(3) .partner__card { background: #8134D5; }
+#again .partner:nth-child(4) .partner__card { background: #50249B; }
+#again .partner:nth-child(5) .partner__card { background: #29104F; }
+#again .partner__text { position: absolute; inset: clamp(20px, 2.2vw, 32px); display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 #again .partner__year { background: color-mix(in srgb, var(--color-1) 62%, transparent); }
-#again .partner__name { font-size: clamp(28px, 2.6vw, 40px); }
+#again .partner__name { margin-top: auto; font-size: clamp(28px, 2.6vw, 40px); }
 #again .partner__line { color: var(--color-2); }
 @media (min-width: 640px) { #again .again__wheel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1000px) { #again .again__wheel { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -416,7 +425,9 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 <style data-8b-part="section:faq">
 @layer sections {
 #faq { position: relative; display: grid; gap: 40px; padding: var(--space-2) var(--space-1); background: var(--color-2); border-top: 1px solid color-mix(in srgb, var(--color-1) 12%, transparent); }
+#faq .faq__head { display: grid; align-content: start; gap: 24px; }
 #faq .faq__title { font-size: clamp(48px, 7.2vw, 116px); }
+#faq .faq__lead { max-width: 34rem; }
 #faq .faq__item { border-bottom: 1px solid color-mix(in srgb, var(--color-1) 16%, transparent); }
 #faq .faq__item:first-child { border-top: 1px solid color-mix(in srgb, var(--color-1) 16%, transparent); }
 #faq summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; cursor: pointer; list-style: none; }
@@ -433,14 +444,16 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 @layer sections {
 #contact { position: relative; padding: var(--space-2) var(--space-1); background: var(--color-3); color: var(--color-2); }
 #contact :focus-visible { outline-color: var(--color-2); }
-#contact .contact__title { font-size: min(19vw, calc((100vw - 2 * var(--space-1)) / (var(--len) * 0.5))); line-height: 0.86; white-space: nowrap; }
+#contact .contact__title { max-width: 100%; font-size: clamp(46px, 6vw, 88px); line-height: 0.9; overflow-wrap: break-word; text-wrap: balance; }
 #contact .contact__title .m-dot { background: var(--color-2); }
-#contact .contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; margin-top: clamp(40px, 8vh, 88px); }
+#contact .contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
 #contact .contact__info { display: grid; align-content: start; gap: 32px; }
+#contact .contact__intro, #contact .contact__direct { display: grid; gap: 12px; }
 #contact .contact__lead { max-width: 30rem; }
 #contact .contact__mail { font-family: var(--font-1); font-size: clamp(28px, 3.4vw, 50px); font-weight: 700; line-height: 1; letter-spacing: -0.035em; text-decoration: none; }
 #contact .contact__mail span { background: linear-gradient(currentColor, currentColor) 0 100% / 100% 2px no-repeat; padding-bottom: 4px; }
 #contact .contact__places { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; }
+#contact .contact__channel { display: grid; align-content: start; gap: 10px; padding-top: 16px; border-top: 1px solid color-mix(in srgb, var(--color-2) 28%, transparent); }
 #contact .contact__places dt { margin-bottom: 6px; }
 #contact .contact__places dd a { text-decoration: none; }
 #contact .contact__form { display: grid; gap: 18px; padding: clamp(22px, 3vw, 40px); }
@@ -451,13 +464,17 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #contact .contact__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding-top: 6px; }
 #contact .contact__status { color: var(--color-1); }
 @media (min-width: 640px) { #contact .contact__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1000px) { #contact .contact__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 6vw; } }
+@media (min-width: 1000px) {
+  #contact .contact__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: clamp(48px, 6vw, 96px); }
+  #contact .contact__info { align-content: center; }
+  #contact .contact__form { align-self: center; width: 100%; }
+}
 }
 </style>
 <style data-8b-part="section:footer">
 @layer sections {
 #footer { --ap: min(30vw, 44svh); position: relative; padding: clamp(80px, 12vh, 140px) var(--space-1) 28px; background: var(--color-1); color: var(--color-2); overflow: clip; }
-#footer .footer__bye { position: relative; padding-top: var(--ap); white-space: nowrap; font-size: min(36vw, 40svh); }
+#footer .footer__bye { position: relative; padding-top: var(--ap); white-space: nowrap; font-size: min(30vw, 40svh); }
 #footer .footer__word { display: inline-block; }
 #footer .footer__period { position: relative; display: inline-block; width: 0.19em; height: 0.19em; margin-left: 0.035em; vertical-align: baseline; }
 #footer .footer__aperture { position: absolute; left: 0; bottom: 0; width: var(--ap); height: var(--ap); overflow: hidden; border-radius: var(--radius-2); background: var(--color-3); transform-origin: 0 100%; }
@@ -469,8 +486,13 @@ textarea.m-field { min-height: 112px; resize: vertical; }
 #footer .footer__news { grid-column: 1 / -1; display: grid; gap: 14px; }
 #footer .footer__field { display: flex; align-items: center; gap: 12px; }
 #footer .footer__field .m-field { flex: 1; }
+#footer .footer__description { color: var(--color-5); }
 #footer .footer__note { color: var(--color-5); }
+#footer .footer__field .m-icon:disabled { cursor: not-allowed; opacity: 0.6; }
 #footer .footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 56px; color: var(--color-5); }
+#footer .footer__legal-side { display: grid; justify-items: end; gap: 8px; text-align: right; }
+#footer .footer__policies { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 18px; opacity: 0.72; }
+@media (max-width: 599px) { #footer .footer__legal-side { justify-items: start; text-align: left; } #footer .footer__policies { justify-content: flex-start; } }
 @media (min-width: 900px) {
   #footer .footer__bye { font-size: min(24vw, 40svh); }
   #footer .footer__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 2fr); }
@@ -544,8 +566,7 @@ textarea.m-field { min-height: 112px; resize: vertical; }
   [data-8b-live] #work .work__stage { position: sticky; top: 0; height: 100svh; min-height: 560px; padding-top: clamp(84px, 13svh, 120px); padding-bottom: clamp(24px, 5svh, 48px); grid-template-rows: auto minmax(0, 1fr); overflow: clip; }
   [data-8b-live] #work .work__window { display: flex; align-items: center; min-height: 0; transform-origin: 0 50%; }
   [data-8b-live] #work .work__track { display: flex; gap: clamp(14px, 1.6vw, 24px); width: max-content; height: min(100%, 64svh); }
-  [data-8b-live] #work .case { width: auto; height: 100%; aspect-ratio: 4 / 5; flex: none; }
-  @media (min-width: 700px) { [data-8b-live] #work .case { aspect-ratio: 16 / 10.5; } }
+  [data-8b-live] #work .case { width: calc(100vw - var(--space-1) - var(--space-1)); height: 100%; aspect-ratio: auto; flex: none; }
 }
 }
 @layer scenes {
@@ -716,12 +737,6 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- navigation: fixed top bar: wordmark, section links, Start a project button; phone menu overlay -->
 <header id="navigation" class="nav" data-8b-section="navigation">
   <a class="nav__brand" href="#hero" aria-label="Guido, back to the top">Guido<span class="m-dot" aria-hidden="true"></span></a>
-  <nav class="nav__links" aria-label="Main">
-    <ul data-8b-items=":scope > li">
-      <li><a class="m-link-2" href="#capabilities"><span data-i18n="nav.services">Servicios</span></a></li>
-      <li><a class="m-link-2" href="#work"><span data-i18n="nav.projects">Proyectos</span></a></li>
-    </ul>
-  </nav>
   <div class="nav__languages" role="group" aria-label="Seleccionar idioma" data-i18n-aria-label="languageSelector">
     <button class="nav__language" type="button" lang="es" data-language="es" aria-label="Español" aria-pressed="true">ES</button>
     <button class="nav__language" type="button" lang="pt-PT" data-language="pt-PT" aria-label="Português" aria-pressed="false">PT</button>
@@ -753,17 +768,15 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 
 <!-- statement: two-line statement of what the studio does, a lead paragraph and an index of links into the page (animation: scene:statement) -->
 <section id="statement" data-8b-section="statement" aria-labelledby="statement-title">
-  <h2 class="m-text-3 statement__title" id="statement-title"><span class="statement__line">We make the things</span><span class="statement__line">people come back&nbsp;to<span class="m-dot statement__dot" aria-hidden="true"></span></span></h2>
+  <h2 class="m-text-3 statement__title" id="statement-title"><span class="statement__line" data-i18n="statement.titleLine1">Menos complejidad</span><span class="statement__line"><span data-i18n="statement.titleLine2">más posibilidades</span><span class="m-dot statement__dot" aria-hidden="true"></span></span></h2>
   <div class="statement__body">
-    <p class="m-text-5 statement__lead" data-8b-motion="ink" data-8b-split="words">Launching is easy. Being chosen again on an ordinary Tuesday is the hard part, whether you run a bank, a bakery or a museum. It takes strategy, craft, engineering and a lot of listening, and it is the only kind of work we do.</p>
+    <p class="m-text-5 statement__lead" data-8b-motion="ink" data-8b-split="words"><span data-i18n="statement.lead">Convertimos necesidades empresariales en soluciones digitales. Combinamos estrategia, software, automatización e inteligencia artificial para crear sistemas que ayudan a las empresas a funcionar mejor y crecer.</span></p>
     <nav class="statement__index" aria-label="On this page" data-8b-motion="arrive" data-8b-enter="85%">
       <ul data-8b-items=":scope > li">
-        <li><a class="m-link" href="#work"><span class="m-link__label">See the work</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
-        <li><a class="m-link" href="#capabilities"><span class="m-link__label">What we do</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
-        <li><a class="m-link" href="#method"><span class="m-link__label">How we work</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
-        <li><a class="m-link" href="#studio"><span class="m-link__label">Inside the studio</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
-        <li><a class="m-link" href="#journal"><span class="m-link__label">Ideas and news</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
-        <li><a class="m-link" href="#contact"><span class="m-link__label">Start a project</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
+        <li><a class="m-link" href="#work"><span class="m-link__label" data-i18n="statement.links.projects">Nuestros proyectos</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
+        <li><a class="m-link" href="#capabilities"><span class="m-link__label" data-i18n="statement.links.what">Qué hacemos</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
+        <li><a class="m-link" href="#method"><span class="m-link__label" data-i18n="statement.links.method">Cómo trabajamos</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
+        <li><a class="m-link" href="#studio"><span class="m-link__label" data-i18n="statement.links.studio">Conoce Guido</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></li>
       </ul>
     </nav>
   </div>
@@ -774,73 +787,62 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   <div class="work__plate" aria-hidden="true"></div>
   <div class="work__stage">
     <div class="work__head">
-      <h2 class="m-text-3" id="work-title">Selected work<span class="m-dot" aria-hidden="true"></span></h2>
-      <p class="m-text-5 work__lead">Five launches from the last two years. Every one of them is still growing.</p>
+      <h2 class="m-text-3" id="work-title"><span data-i18n="work.title">Proyectos seleccionados</span><span class="m-dot" aria-hidden="true"></span></h2>
     </div>
     <div class="work__window">
       <ul class="work__track" data-8b-items=":scope > .case" data-8b-fixed="5">
         <li class="case">
-          <div class="case__media"><img class="case__img" src="https://images.unsplash.com/photo-1620802090791-fd9420668913?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8ZWxlY3RyaWMlMjBiaWtlJTIwY2l0eSUyMHJpZGVyfGVufDF8MHx8fDE3OTEyMDk3MDZ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1140&amp;h=713&amp;q=60" width="1600" height="1000" alt="A rider on an electric bike on a seaside promenade under a wide blue sky" loading="lazy"></div>
-          <span class="m-badge case__tag">Brand, launch</span>
-          <div class="case__text"><h3 class="m-text-4 case__name">Northwind Bikes</h3><p class="m-text-5 case__line">An e-bike brand launched in eleven cities in a single spring.</p></div>
+          <span class="m-badge case__tag" data-i18n="work.projects.vilaCar.category">Automatización digital</span>
+          <div class="case__media"><img class="case__img" src="assets/images/projects/vila-car.webp" width="1600" height="900" alt="Flujo de automatización de Vila Car en un portátil entre dos vistas móviles de Instagram" data-i18n-alt="work.projects.vilaCar.alt" loading="lazy"></div>
+          <div class="case__text"><h3 class="m-text-4 case__name">Vila Car</h3><p class="m-text-5 case__line" data-i18n="work.projects.vilaCar.description">Automatización de contenidos para redes sociales que simplifica la preparación de publicaciones.</p></div>
         </li>
         <li class="case">
-          <div class="case__media"><img class="case__img" src="https://images.unsplash.com/photo-1713371690087-baafaf440240?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8d29tYW4lMjBzbWlsaW5nJTIwaG9sZGluZyUyMHBob25lJTIwY29sb3JmdWx8ZW58MXwwfHx8MTc5MTIwOTcwN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1140&amp;h=713&amp;q=60" width="1600" height="1000" alt="A smiling woman in an orange sweater against a lilac wall" loading="lazy"></div>
-          <span class="m-badge case__tag">Product, app</span>
-          <div class="case__text"><h3 class="m-text-4 case__name">Halden Bank</h3><p class="m-text-5 case__line">A 120-year-old bank, rebuilt as the app its customers open first.</p></div>
+          <span class="m-badge case__tag" data-i18n="work.projects.nextLevel.category">Desarrollo web</span>
+          <div class="case__media"><img class="case__img" src="assets/images/projects/nextlevel.webp" width="1600" height="871" alt="Página principal de NextLevel IA Solutions con una propuesta de soluciones tecnológicas y un globo digital" data-i18n-alt="work.projects.nextLevel.alt" loading="lazy"></div>
+          <div class="case__text"><h3 class="m-text-4 case__name">NextLevel</h3><p class="m-text-5 case__line" data-i18n="work.projects.nextLevel.description">Presencia digital corporativa para comunicar servicios tecnológicos de forma clara y profesional.</p></div>
         </li>
         <li class="case">
-          <div class="case__media"><img class="case__img" src="https://images.unsplash.com/photo-1587241321921-91a834d6d191?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YXJ0aXNhbiUyMGJha2VyeSUyMGJyZWFkJTIwY291bnRlcnxlbnwxfDB8fHwxNzkxMjA5NzA3fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1140&amp;h=713&amp;q=60" width="1600" height="1000" alt="A baker in front of warmly lit wooden shelves of bread" loading="lazy"></div>
-          <span class="m-badge case__tag">Commerce</span>
-          <div class="case__text"><h3 class="m-text-4 case__name">Copper &amp; Oat</h3><p class="m-text-5 case__line">A neighbourhood bakery that now sells more by phone than by window.</p></div>
+          <span class="m-badge case__tag" data-i18n="work.projects.escalPa.category">Salud digital · Sin fines de lucro</span>
+          <div class="case__media"><img class="case__img" src="assets/images/projects/escalpa.webp" width="1600" height="901" alt="Interfaces conceptuales de telemedicina de EscalPa en móvil y portátil" data-i18n-alt="work.projects.escalPa.alt" loading="lazy"></div>
+          <div class="case__text"><h3 class="m-text-4 case__name">EscalPa</h3><p class="m-text-5 case__line" data-i18n="work.projects.escalPa.description">Iniciativa sin fines de lucro que busca facilitar el acceso a la atención médica mediante consultas virtuales.</p></div>
         </li>
         <li class="case">
-          <div class="case__media"><img class="case__img" src="https://images.unsplash.com/photo-1544213456-bc37cb97df74?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8bXVzZXVtJTIwZ2FsbGVyeSUyMHZpc2l0b3JzfGVufDF8MHx8fDE3OTEyMDk3MDd8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1140&amp;h=713&amp;q=60" width="1600" height="1000" alt="Visitors walking among white statues in a gallery with blue walls" loading="lazy"></div>
-          <span class="m-badge case__tag">Service, content</span>
-          <div class="case__text"><h3 class="m-text-4 case__name">Atlas Museum</h3><p class="m-text-5 case__line">A quiet collection turned into a weekly night out.</p></div>
+          <span class="m-badge case__tag" data-i18n="work.projects.legadoOs.category">Ecosistema digital inmersivo</span>
+          <div class="case__media"><img class="case__img" src="assets/images/projects/legado-os.webp" width="1600" height="900" alt="Interfaz conceptual de Legado OS con un mapa inmersivo de proyectos y conocimiento" data-i18n-alt="work.projects.legadoOs.alt" loading="lazy"></div>
+          <div class="case__text"><h3 class="m-text-4 case__name">Legado OS</h3><p class="m-text-5 case__line" data-i18n="work.projects.legadoOs.description">Un espacio digital inmersivo para organizar proyectos, conectar conocimiento y transformar la manera de trabajar.</p></div>
         </li>
         <li class="case">
-          <div class="case__media"><img class="case__img" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8aGVhZHBob25lcyUyMGNvbG9yZnVsJTIwYmFja2dyb3VuZHxlbnwxfDB8fHwxNzkxMjA5NzA4fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1360&amp;h=850&amp;q=60" width="1600" height="1000" alt="Black wireless headphones lit in red and blue" loading="lazy"></div>
-          <span class="m-badge case__tag">Campaign</span>
-          <div class="case__text"><h3 class="m-text-4 case__name">Sola Sound</h3><p class="m-text-5 case__line">A headphone launch that sold out its first run in nine days.</p></div>
+          <span class="m-badge case__tag" data-i18n="work.projects.legadoOsBank.category">Finanzas personales</span>
+          <div class="case__media"><img class="case__img" src="assets/images/projects/legado-os-bank.webp" width="1600" height="900" alt="Interfaz conceptual de Legado OS Bank para finanzas personales en portátil y móvil" data-i18n-alt="work.projects.legadoOsBank.alt" loading="lazy"></div>
+          <div class="case__text"><h3 class="m-text-4 case__name">Legado OS Bank</h3><p class="m-text-5 case__line" data-i18n="work.projects.legadoOsBank.description">Aplicación concebida para organizar y gestionar las finanzas personales dentro del ecosistema Legado OS.</p></div>
         </li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- again: long-term clients: six cards on a wheel that turns with scroll (demo: years of partnership) (animation: scene:again) -->
+<!-- again: five chapters on a wheel that turns with scroll (animation: scene:again) -->
 <section id="again" data-8b-section="again" aria-labelledby="again-title">
   <div class="again__stage">
     <div class="again__head">
-      <h2 class="m-text-3" id="again-title">Never a one-off<span class="m-dot" aria-hidden="true"></span></h2>
-      <p class="m-text-5 again__lead">Most of our partners have been with us for more than five years. Every lap around, the work gets sharper.</p>
+      <h2 class="m-text-3" id="again-title"><span data-i18n="again.title">Tecnología que evoluciona contigo</span><span class="m-dot" aria-hidden="true"></span></h2>
     </div>
     <div class="again__swing">
       <ul class="again__wheel" data-8b-items=":scope > .partner">
         <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1594386245199-289c2fe0bd0a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8YWlycGxhbmUlMjB3aW5kb3clMjBza3klMjBzdW5zZXR8ZW58MXwxfHx8MTc5MTIwOTcyOHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="A sunset sky and a wing seen through an airplane window" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 9</span><h3 class="m-text-4 partner__name">Vela Air</h3><p class="m-text partner__line">From the booking flow to the boarding gate.</p></div></div>
+          <div class="partner__card"><div class="partner__text"><span class="m-badge partner__year" data-i18n="again.chapters.one.label">Capítulo 01</span><h3 class="m-text-4 partner__name" data-i18n="again.chapters.one.title">Todo empieza por entender</h3><p class="m-text partner__line" data-i18n="again.chapters.one.description">Antes de crear una solución, necesitamos comprender el negocio y lo que realmente necesita mejorar.</p></div></div>
         </li>
         <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1532713107108-dfb5d8d2fc42?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YmFyaXN0YSUyMHBvdXJpbmclMjBjb2ZmZWV8ZW58MXwxfHx8MTc5MTIwOTcyOXww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="A barista pouring milk into a latte" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 4</span><h3 class="m-text-4 partner__name">Kiln Coffee</h3><p class="m-text partner__line">One roastery grew into a subscription habit.</p></div></div>
+          <div class="partner__card"><div class="partner__text"><span class="m-badge partner__year" data-i18n="again.chapters.two.label">Capítulo 02</span><h3 class="m-text-4 partner__name" data-i18n="again.chapters.two.title">Después, encontramos el camino</h3><p class="m-text partner__line" data-i18n="again.chapters.two.description">Conectamos estrategia y tecnología para transformar problemas reales en oportunidades.</p></div></div>
         </li>
         <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1658296777645-0f389d06867c?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8aGlrZXIlMjBtb3VudGFpbiUyMHJpZGdlfGVufDF8MXx8fDE3OTEyMDk3Mjl8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="A hiker with a backpack standing on a rock above green mountains" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 6</span><h3 class="m-text-4 partner__name">Larch Outdoor</h3><p class="m-text partner__line">A storefront rebuilt around the off-season.</p></div></div>
+          <div class="partner__card"><div class="partner__text"><span class="m-badge partner__year" data-i18n="again.chapters.three.label">Capítulo 03</span><h3 class="m-text-4 partner__name" data-i18n="again.chapters.three.title">Construimos algo que funciona</h3><p class="m-text partner__line" data-i18n="again.chapters.three.description">Diseñamos sistemas que simplifican el trabajo y aportan valor desde su implementación.</p></div></div>
         </li>
         <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1558324190-c940eb141401?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8bmVvbiUyMGFyY2FkZSUyMGdhbWluZ3xlbnwxfDF8fHwxNzkxMjA5NzMwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="Rows of arcade machines glowing with neon light" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 7</span><h3 class="m-text-4 partner__name">Tessera Games</h3><p class="m-text partner__line">A launch campaign for every season since day one.</p></div></div>
+          <div class="partner__card"><div class="partner__text"><span class="m-badge partner__year" data-i18n="again.chapters.four.label">Capítulo 04</span><h3 class="m-text-4 partner__name" data-i18n="again.chapters.four.title">El negocio sigue avanzando</h3><p class="m-text partner__line" data-i18n="again.chapters.four.description">Las necesidades cambian. La tecnología debe poder adaptarse y acompañar ese crecimiento.</p></div></div>
         </li>
         <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1641675301559-468f9f4ca037?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2l0eSUyMGhhbGwlMjBwZW9wbGUlMjBzdHJlZXR8ZW58MXwxfHx8MTc5MTIwOTczMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="A cyclist riding past a red-brick city hall under a blue sky" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 8</span><h3 class="m-text-4 partner__name">Civic Lab</h3><p class="m-text partner__line">Public services people can finish on a phone.</p></div></div>
-        </li>
-        <li class="partner">
-          <div class="partner__card"><img class="partner__img" src="https://images.unsplash.com/photo-1761234852163-23f2ededd04e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8ZG9jdG9yJTIwcGF0aWVudCUyMGNsaW5pY3xlbnwxfDF8fHwxNzkxMjA5NzMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=730&amp;h=913&amp;q=60" width="900" height="1125" alt="A nurse comforting a young child on a sofa" loading="lazy">
-          <div class="partner__text"><span class="m-badge partner__year">Year 5</span><h3 class="m-text-4 partner__name">Marrow Health</h3><p class="m-text partner__line">One patient app across three hospital systems.</p></div></div>
+          <div class="partner__card"><div class="partner__text"><span class="m-badge partner__year" data-i18n="again.chapters.five.label">Capítulo 05</span><h3 class="m-text-4 partner__name" data-i18n="again.chapters.five.title">Y volvemos a mejorar</h3><p class="m-text partner__line" data-i18n="again.chapters.five.description">Medimos, aprendemos y optimizamos. Porque una buena solución no termina cuando se entrega.</p></div></div>
         </li>
       </ul>
     </div>
@@ -850,53 +852,53 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- capabilities: services: five cards that stack as you scroll, each with deliverable badges and a photo (animation: scene:capabilities) -->
 <section id="capabilities" data-8b-section="capabilities" aria-labelledby="capabilities-title">
   <div class="capabilities__head">
-    <h2 class="m-text-3" id="capabilities-title" data-8b-motion="rise">What we do<span class="m-dot" aria-hidden="true"></span></h2>
-    <p class="m-text-5 capabilities__lead">Five practices and one team in the room, from the first workshop to the last release.</p>
+    <h2 class="m-text-3" id="capabilities-title" data-8b-motion="rise"><span data-i18n="capabilities.title">Qué hacemos</span><span class="m-dot" aria-hidden="true"></span></h2>
+    <p class="m-text-5 capabilities__lead" data-i18n="capabilities.description">Diseñamos y construimos soluciones tecnológicas que ayudan a las empresas a trabajar mejor, vender más y crecer.</p>
   </div>
   <ol class="capabilities__deck" data-8b-items=":scope > .service" data-8b-fixed="5">
     <li class="service m-surface">
       <div class="service__text">
-        <h3 class="m-text-4">Brand and identity</h3>
-        <p class="m-text-5 service__line">Positioning, naming and identity systems with enough range to stay interesting in year five.</p>
-        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge">Strategy</li><li class="m-badge">Naming</li><li class="m-badge">Identity systems</li><li class="m-badge">Guidelines</li></ul>
+        <h3 class="m-text-4" data-i18n="capabilities.services.web.title">Desarrollo web y aplicaciones</h3>
+        <p class="m-text-5 service__line" data-i18n="capabilities.services.web.description">Creamos páginas web, aplicaciones y plataformas digitales que ayudan a las empresas a captar clientes, ofrecer servicios y crecer.</p>
+        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge" data-i18n="capabilities.services.web.tags.one">Webs corporativas</li><li class="m-badge" data-i18n="capabilities.services.web.tags.two">Aplicaciones</li><li class="m-badge" data-i18n="capabilities.services.web.tags.three">E-commerce</li><li class="m-badge" data-i18n="capabilities.services.web.tags.four">Plataformas</li></ul>
       </div>
-      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1617825295690-28ae56c56135?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cGFja2FnaW5nJTIwZGVzaWduJTIwbW9ja3VwJTIwYm94ZXN8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Pink and green printed boxes stacked together" loading="lazy"></div>
+      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1617825295690-28ae56c56135?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cGFja2FnaW5nJTIwZGVzaWduJTIwbW9ja3VwJTIwYm94ZXN8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Cajas impresas rosas y verdes apiladas" data-i18n-alt="capabilities.services.web.alt" loading="lazy"></div>
       <span class="service__shade" aria-hidden="true"></span>
     </li>
     <li class="service m-surface">
       <div class="service__text">
-        <h3 class="m-text-4">Products and apps</h3>
-        <p class="m-text-5 service__line">Apps and platforms designed, engineered and measured by the same people who first sketched them.</p>
-        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge">Product strategy</li><li class="m-badge">UX and UI</li><li class="m-badge">Engineering</li><li class="m-badge">Design systems</li></ul>
+        <h3 class="m-text-4" data-i18n="capabilities.services.automation.title">Automatización de procesos</h3>
+        <p class="m-text-5 service__line" data-i18n="capabilities.services.automation.description">Conectamos herramientas y automatizamos tareas repetitivas para reducir trabajo manual, ahorrar tiempo y mejorar las operaciones.</p>
+        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge" data-i18n="capabilities.services.automation.tags.one">n8n</li><li class="m-badge" data-i18n="capabilities.services.automation.tags.two">Integraciones</li><li class="m-badge" data-i18n="capabilities.services.automation.tags.three">Flujos de trabajo</li><li class="m-badge" data-i18n="capabilities.services.automation.tags.four">APIs</li></ul>
       </div>
-      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1601972599720-36938d4ecd31?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8aGFuZCUyMGhvbGRpbmclMjBzbWFydHBob25lJTIwYXBwJTIwc2NyZWVufGVufDF8MXx8fDE3OTEyMDk3NzJ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="A hand holding a phone that shows a food ordering app" loading="lazy"></div>
+      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1601972599720-36938d4ecd31?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8aGFuZCUyMGhvbGRpbmclMjBzbWFydHBob25lJTIwYXBwJTIwc2NyZWVufGVufDF8MXx8fDE3OTEyMDk3NzJ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Una mano sostiene un teléfono con una aplicación para pedir comida" data-i18n-alt="capabilities.services.automation.alt" loading="lazy"></div>
       <span class="service__shade" aria-hidden="true"></span>
     </li>
     <li class="service m-surface">
       <div class="service__text">
-        <h3 class="m-text-4">Campaigns and content</h3>
-        <p class="m-text-5 service__line">Ideas sized for culture and planned like a product roadmap, so the second month is better than the first.</p>
-        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge">Campaigns</li><li class="m-badge">Social</li><li class="m-badge">Film and photo</li><li class="m-badge">Media planning</li></ul>
+        <h3 class="m-text-4" data-i18n="capabilities.services.ai.title">Inteligencia artificial aplicada</h3>
+        <p class="m-text-5 service__line" data-i18n="capabilities.services.ai.description">Incorporamos inteligencia artificial en procesos reales para analizar información, asistir a los equipos y automatizar operaciones.</p>
+        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge" data-i18n="capabilities.services.ai.tags.one">Agentes IA</li><li class="m-badge" data-i18n="capabilities.services.ai.tags.two">Asistentes</li><li class="m-badge" data-i18n="capabilities.services.ai.tags.three">IA generativa</li><li class="m-badge" data-i18n="capabilities.services.ai.tags.four">Modelos locales</li></ul>
       </div>
-      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1720175646447-e37d994007fc?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8YmlsbGJvYXJkJTIwY2l0eSUyMHN0cmVldCUyMHBvc3RlcnxlbnwxfDF8fHwxNzkxMjA5NzUxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="A large advertisement on the side of a city building" loading="lazy"></div>
+      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1720175646447-e37d994007fc?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8YmlsbGJvYXJkJTIwY2l0eSUyMHN0cmVldCUyMHBvc3RlcnxlbnwxfDF8fHwxNzkxMjA5NzUxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Un gran anuncio en la fachada de un edificio urbano" data-i18n-alt="capabilities.services.ai.alt" loading="lazy"></div>
       <span class="service__shade" aria-hidden="true"></span>
     </li>
     <li class="service m-surface">
       <div class="service__text">
-        <h3 class="m-text-4">Service design</h3>
-        <p class="m-text-5 service__line">Every moment between a person and your company, mapped, prototyped and made a little easier.</p>
-        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge">Research</li><li class="m-badge">Journey mapping</li><li class="m-badge">Blueprints</li><li class="m-badge">Prototyping</li></ul>
+        <h3 class="m-text-4" data-i18n="capabilities.services.systems.title">Sistemas empresariales</h3>
+        <p class="m-text-5 service__line" data-i18n="capabilities.services.systems.description">Diseñamos sistemas que conectan clientes, información y operaciones para que las empresas trabajen de forma más organizada y eficiente.</p>
+        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge" data-i18n="capabilities.services.systems.tags.one">CRM</li><li class="m-badge" data-i18n="capabilities.services.systems.tags.two">Dashboards</li><li class="m-badge" data-i18n="capabilities.services.systems.tags.three">Gestión interna</li><li class="m-badge" data-i18n="capabilities.services.systems.tags.four">Bases de datos</li></ul>
       </div>
-      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8d29ya3Nob3AlMjBzdGlja3klMjBub3RlcyUyMHdhbGx8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="A wall of printed sticky notes from a research workshop" loading="lazy"></div>
+      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8d29ya3Nob3AlMjBzdGlja3klMjBub3RlcyUyMHdhbGx8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Una pared cubierta de notas adhesivas de un taller de investigación" data-i18n-alt="capabilities.services.systems.alt" loading="lazy"></div>
       <span class="service__shade" aria-hidden="true"></span>
     </li>
     <li class="service m-surface">
       <div class="service__text">
-        <h3 class="m-text-4">Applied AI</h3>
-        <p class="m-text-5 service__line">Tools your teams use on Monday morning, not a demo for the board.</p>
-        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge">Opportunity mapping</li><li class="m-badge">Prototypes</li><li class="m-badge">Assistants</li><li class="m-badge">Team training</li></ul>
+        <h3 class="m-text-4" data-i18n="capabilities.services.growth.title">Crecimiento digital</h3>
+        <p class="m-text-5 service__line" data-i18n="capabilities.services.growth.description">Construimos soluciones digitales que ayudan a las empresas a atraer oportunidades comerciales, gestionar contactos y convertirlos en clientes.</p>
+        <ul class="service__tags" data-8b-items=":scope > li"><li class="m-badge" data-i18n="capabilities.services.growth.tags.one">Captación digital</li><li class="m-badge" data-i18n="capabilities.services.growth.tags.two">Landing pages</li><li class="m-badge" data-i18n="capabilities.services.growth.tags.three">Embudos de venta</li><li class="m-badge" data-i18n="capabilities.services.growth.tags.four">Seguimiento</li></ul>
       </div>
-      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1769675353367-e581059c7c43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8YWJzdHJhY3QlMjBsaWdodCUyMHRyYWlscyUyMGRhcmslMjB2aW9sZXR8ZW58MXwwfHx8MTc5MTIwOTc3M3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Violet light trails curving across a dark background" loading="lazy"></div>
+      <div class="service__media" data-8b-motion="iris" data-8b-enter="86%"><img src="https://images.unsplash.com/photo-1769675353367-e581059c7c43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8YWJzdHJhY3QlMjBsaWdodCUyMHRyYWlscyUyMGRhcmslMjB2aW9sZXR8ZW58MXwwfHx8MTc5MTIwOTc3M3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=720&amp;h=540&amp;q=60" width="1200" height="900" alt="Estelas de luz violeta sobre un fondo oscuro" data-i18n-alt="capabilities.services.growth.alt" loading="lazy"></div>
       <span class="service__shade" aria-hidden="true"></span>
     </li>
   </ol>
@@ -905,8 +907,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- method: process: four steps beside a ring the scroll draws round (demo: Listen, Make, Measure, Again) (animation: scene:method) -->
 <section id="method" data-8b-section="method" aria-labelledby="method-title">
   <div class="method__head">
-    <h2 class="m-text-3" id="method-title" data-8b-motion="rise">How we work<span class="m-dot" aria-hidden="true"></span></h2>
-    <p class="m-text-5 method__lead" data-8b-motion="ink" data-8b-split="words">Every project runs the same loop of four steps. The fourth is the one most studios skip, and it is where the best work happens.</p>
+    <h2 class="m-text-3" id="method-title" data-8b-motion="rise"><span data-i18n="method.title">Cómo trabajamos</span><span class="m-dot" aria-hidden="true"></span></h2>
+    <p class="m-text-5 method__lead" data-8b-motion="ink" data-8b-split="words"><span data-i18n="method.description">No empezamos por la tecnología. Empezamos por entender tu negocio, identificar qué necesita mejorar y construir la solución adecuada.</span></p>
   </div>
   <div class="method__body">
     <div class="method__ring" aria-hidden="true" data-8b-items=":scope > .method__station" data-8b-fixed="4">
@@ -918,19 +920,19 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <span class="method__arm"><span class="method__runner"></span></span>
     </div>
     <ol class="method__steps" data-8b-items=":scope > .step" data-8b-fixed="4">
-      <li class="step"><h3 class="m-text-4">Listen</h3><p class="m-text-5 step__text">Two weeks with your customers, your data and your front line before we draw anything at all.</p></li>
-      <li class="step"><h3 class="m-text-4">Make</h3><p class="m-text-5 step__text">Small mixed teams ship real, testable things early: in days, not quarters, and in front of real people.</p></li>
-      <li class="step"><h3 class="m-text-4">Measure</h3><p class="m-text-5 step__text">We agree on what better looks like before we start, then report it honestly, good news or not.</p></li>
-      <li class="step"><h3 class="m-text-4">Again</h3><p class="m-text-5 step__text">We take what we learned and go round once more. It is not the end of the project. It is the job.</p></li>
+      <li class="step"><h3 class="m-text-4" data-i18n="method.steps.understand.title">01 — Entender</h3><p class="m-text-5 step__text" data-i18n="method.steps.understand.description">Analizamos tu negocio, tus objetivos y tus procesos para identificar problemas reales y oportunidades de mejora.</p></li>
+      <li class="step"><h3 class="m-text-4" data-i18n="method.steps.design.title">02 — Diseñar</h3><p class="m-text-5 step__text" data-i18n="method.steps.design.description">Definimos la solución, las herramientas necesarias y los resultados que queremos conseguir antes de desarrollar.</p></li>
+      <li class="step"><h3 class="m-text-4" data-i18n="method.steps.build.title">03 — Construir</h3><p class="m-text-5 step__text" data-i18n="method.steps.build.description">Desarrollamos, integramos y ponemos en funcionamiento la solución, comprobando que responda a las necesidades del negocio.</p></li>
+      <li class="step"><h3 class="m-text-4" data-i18n="method.steps.evolve.title">04 — Evolucionar</h3><p class="m-text-5 step__text" data-i18n="method.steps.evolve.description">Medimos los resultados, identificamos mejoras y evolucionamos la solución según las necesidades de cada empresa.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- studio: team and careers: photo collage that deals out from a pile, with open roles (animation: scene:studio) -->
+<!-- studio: Guido approach and collaborations beside a photo collage that deals out from a pile (animation: scene:studio) -->
 <section id="studio" data-8b-section="studio" aria-labelledby="studio-title">
   <div class="studio__head">
-    <h2 class="m-text-3" id="studio-title">Inside the studio<span class="m-dot" aria-hidden="true"></span></h2>
-    <p class="m-text-5 studio__lead" data-8b-motion="ink" data-8b-split="words">Ninety people between Lisbon and Brooklyn: strategists, designers, engineers and writers who would rather show you than tell you. We work in small mixed teams, sit with the people we build for, and keep Friday afternoons for our own experiments.</p>
+    <h2 class="m-text-3" id="studio-title"><span data-i18n="studio.title">Ideas y talento</span><span class="m-dot" aria-hidden="true"></span></h2>
+    <p class="m-text-5 studio__lead" data-8b-motion="ink" data-8b-split="words"><span data-i18n="studio.description">En Guido combinamos estrategia, desarrollo tecnológico y colaboración especializada para construir soluciones que responden a las necesidades de cada negocio.</span></p>
   </div>
   <div class="studio__collage">
     <figure class="shot shot--wide"><img src="https://images.unsplash.com/photo-1787647559705-d2ad3322020e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y3JlYXRpdmUlMjB0ZWFtJTIwbWVldGluZyUyMHN0dWRpb3xlbnwxfDB8fHwxNzkxMjA5NzQ5fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=450&amp;h=300&amp;q=60" width="1400" height="933" alt="A team working together around a desk in a colourful studio" loading="lazy"></figure>
@@ -939,13 +941,11 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
     <figure class="shot shot--wide"><img src="https://images.unsplash.com/photo-1787647560262-ebfcf6c5f979?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y3JlYXRpdmUlMjB0ZWFtJTIwbWVldGluZyUyMHN0dWRpb3xlbnwxfDB8fHwxNzkxMjA5NzQ5fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=460&amp;h=307&amp;q=60" width="1400" height="933" alt="Four people collaborating around a table seen from above" loading="lazy"></figure>
     <figure class="shot shot--wide"><img src="https://images.unsplash.com/photo-1623652653308-d49d335c92eb?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8d29ya3Nob3AlMjBzdGlja3klMjBub3RlcyUyMHdhbGx8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=440&amp;h=293&amp;q=60" width="1400" height="933" alt="A team discussing ideas in front of a wall of notes" loading="lazy"></figure>
     <div class="studio__roles">
-      <h3 class="m-text-7" data-8b-motion="rise">Open roles<span class="m-dot" aria-hidden="true"></span></h3>
       <ul data-8b-items=":scope > li">
-        <li class="role"><span class="m-text-7">Senior product designer</span><span class="m-text-6 role__place">Lisbon</span></li>
-        <li class="role"><span class="m-text-7">Creative technologist</span><span class="m-text-6 role__place">Brooklyn</span></li>
-        <li class="role"><span class="m-text-7">Strategy director</span><span class="m-text-6 role__place">Remote, Europe</span></li>
+        <li class="role"><span class="m-text-7" data-i18n="studio.collaborations.title">Colaboremos.</span></li>
+        <li class="role"><span class="m-text-6 role__place" data-i18n="studio.collaborations.description">Creemos que las mejores soluciones nacen cuando se unen diferentes ideas, experiencias y capacidades. En Guido estamos abiertos a colaborar con profesionales y empresas que quieran crear, innovar y desarrollar proyectos con impacto real.</span></li>
       </ul>
-      <a data-8b-placeholder="email" class="m-link" href="mailto:careers@onda.example"><span class="m-link__label">careers@onda.example</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a>
+      <a class="m-link" href="#contact"><span class="m-link__label" data-i18n="studio.collaborations.cta">Hablemos de colaborar</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a>
     </div>
   </div>
 </section>
@@ -953,7 +953,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- journal: news and articles: four stories beside a sticky photo frame (animation: scene:journal) -->
 <section id="journal" data-8b-section="journal" aria-labelledby="journal-title">
   <div class="journal__head">
-    <h2 class="m-text-3" id="journal-title" data-8b-motion="rise">Ideas and news<span class="m-dot" aria-hidden="true"></span></h2>
+    <h2 class="m-text-3" id="journal-title" data-8b-motion="rise"><span data-i18n="journal.title">Ideas que impulsan</span><span class="m-dot" aria-hidden="true"></span></h2>
+    <p class="m-text-5" data-i18n="journal.description">Exploramos ideas, tendencias y soluciones tecnológicas que pueden transformar la manera de trabajar, innovar y hacer crecer un negocio.</p>
   </div>
   <div class="journal__body">
     <div class="journal__frame" data-8b-items=":scope > img" data-8b-fixed="4">
@@ -963,91 +964,99 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <img class="journal__shot" src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8d29ya3Nob3AlMjBzdGlja3klMjBub3RlcyUyMHdhbGx8ZW58MXwwfHx8MTc5MTIwOTc1MHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=570&amp;h=713&amp;q=60" width="1000" height="1250" alt="Handwritten sticky notes pinned to a corkboard after a research session" loading="lazy">
     </div>
     <ol class="journal__list" data-8b-items=":scope > .story" data-8b-fixed="4">
-      <li class="story"><p class="m-text-6 story__meta"><span>Event</span> · <time datetime="2026-10-01">1 October 2026</time> · 2 min read</p><h3 class="m-text-7">Open Studio Night returns to Lisbon on 14 November</h3><p class="m-text story__text">Talks, half-built prototypes and a long table in the old print hall. Bring a friend who makes things.</p></li>
-      <li class="story"><p class="m-text-6 story__meta"><span>Essay</span> · <time datetime="2026-09-18">18 September 2026</time> · 6 min read</p><h3 class="m-text-7">The second visit: why we design for the return, not the launch</h3><p class="m-text story__text">Most products are judged on day one and lost on day thirty. Notes on designing for the ordinary Tuesday.</p></li>
-      <li class="story"><p class="m-text-6 story__meta"><span>Notes</span> · <time datetime="2026-08-30">30 August 2026</time> · 8 min read</p><h3 class="m-text-7">Type, tested: a variable identity that holds up at twelve pixels</h3><p class="m-text story__text">How one variable family carried a bank from a forty-metre billboard to its banking app.</p></li>
-      <li class="story"><p class="m-text-6 story__meta"><span>Research</span> · <time datetime="2026-08-04">4 August 2026</time> · 5 min read</p><h3 class="m-text-7">What three hundred nurses told us about the night shift</h3><p class="m-text story__text">Six weeks of field research for a health partner, and the three things we changed because of it.</p></li>
+      <li class="story"><p class="m-text-6 story__meta"><span data-i18n="journal.cards.ai.category">INTELIGENCIA ARTIFICIAL</span></p><h3 class="m-text-7" data-i18n="journal.cards.ai.title">La IA más allá de las conversaciones.</h3><p class="m-text story__text" data-i18n="journal.cards.ai.description">Descubre cómo la inteligencia artificial puede ayudar a analizar información, automatizar tareas y mejorar procesos empresariales.</p></li>
+      <li class="story"><p class="m-text-6 story__meta"><span data-i18n="journal.cards.automation.category">AUTOMATIZACIÓN</span></p><h3 class="m-text-7" data-i18n="journal.cards.automation.title">Menos tareas. Más resultados.</h3><p class="m-text story__text" data-i18n="journal.cards.automation.description">Procesos que pueden automatizarse para ahorrar tiempo, reducir trabajo manual y mejorar las operaciones.</p></li>
+      <li class="story"><p class="m-text-6 story__meta"><span data-i18n="journal.cards.digital.category">DESARROLLO DIGITAL</span></p><h3 class="m-text-7" data-i18n="journal.cards.digital.title">Tu negocio puede hacer más.</h3><p class="m-text story__text" data-i18n="journal.cards.digital.description">Ideas para convertir páginas web, aplicaciones y plataformas digitales en herramientas útiles para las empresas.</p></li>
+      <li class="story"><p class="m-text-6 story__meta"><span data-i18n="journal.cards.innovation.category">INNOVACIÓN</span></p><h3 class="m-text-7" data-i18n="journal.cards.innovation.title">El futuro ya está en marcha.</h3><p class="m-text story__text" data-i18n="journal.cards.innovation.description">Tendencias, avances y nuevas posibilidades tecnológicas que merece la pena conocer.</p></li>
     </ol>
   </div>
 </section>
 
 <!-- faq: questions and answers (native <details>) -->
 <section id="faq" data-8b-section="faq" aria-labelledby="faq-title">
-  <h2 class="m-text-3 faq__title" id="faq-title" data-8b-motion="rise">Fair questions<span class="m-dot" aria-hidden="true"></span></h2>
+  <div class="faq__head">
+    <h2 class="m-text-3 faq__title" id="faq-title" data-8b-motion="rise"><span data-i18n="faq.title">Buenas preguntas. Respuestas claras</span><span class="m-dot" aria-hidden="true"></span></h2>
+    <p class="m-text-5 faq__lead" data-i18n="faq.description">Cada negocio es diferente. Aquí respondemos algunas de las preguntas más habituales sobre cómo podemos ayudarte.</p>
+  </div>
   <div class="faq__list" data-8b-items=":scope > details">
-    <details class="faq__item"><summary class="m-text-7">What size of company do you work with?<span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer">Mostly companies between fifty and five thousand people, plus a few public bodies. Size matters less than whether the people who decide are in the room.</p></details>
-    <details class="faq__item"><summary class="m-text-7">How does a project usually start?<span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer">With a two-week listening sprint: interviews, data and a day on your front line. You get a short written point of view and a plan before any big commitment.</p></details>
-    <details class="faq__item"><summary class="m-text-7">Do you work alongside in-house teams?<span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer">Almost always. We pair with your designers, engineers and marketers, and we hand over every system we build so you are never stuck with us. Most partners keep us around anyway.</p></details>
-    <details class="faq__item"><summary class="m-text-7">How do you price the work?<span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer">Fixed fees for defined phases, then a monthly team for ongoing work. We are open about our rates on the first call.</p></details>
-    <details class="faq__item"><summary class="m-text-7">Where are you based?<span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer">Lisbon and Brooklyn, with people working remotely across Europe and the US east coast. We travel for workshops and launches.</p></details>
+    <details class="faq__item"><summary class="m-text-7"><span data-i18n="faq.items.services.question">¿Qué puede hacer Guido por mi empresa?</span><span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer" data-i18n="faq.items.services.answer">Ayudamos a las empresas a trabajar mejor, vender más y crecer mediante desarrollo de software, automatización, inteligencia artificial y sistemas digitales. Analizamos cada necesidad para proponer soluciones adaptadas al negocio.</p></details>
+    <details class="faq__item"><summary class="m-text-7"><span data-i18n="faq.items.technology.question">¿Necesito saber de tecnología para trabajar con Guido?</span><span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer" data-i18n="faq.items.technology.answer">No. Nos encargamos de explicar las opciones de forma clara, ayudarte a tomar decisiones y desarrollar soluciones que resulten prácticas para tu equipo.</p></details>
+    <details class="faq__item"><summary class="m-text-7"><span data-i18n="faq.items.size.question">¿Trabajáis con pequeñas empresas o también con empresas grandes?</span><span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer" data-i18n="faq.items.size.answer">Podemos estudiar proyectos de diferentes tamaños, desde una web o una automatización concreta hasta sistemas digitales más complejos. El alcance se define según las necesidades y recursos de cada empresa.</p></details>
+    <details class="faq__item"><summary class="m-text-7"><span data-i18n="faq.items.cost.question">¿Cuánto cuesta desarrollar un proyecto con Guido?</span><span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer" data-i18n="faq.items.cost.answer">Depende del problema que debamos resolver, la complejidad de la solución y el alcance del trabajo. Primero entendemos lo que necesitas y después preparamos una propuesta adaptada.</p></details>
+    <details class="faq__item"><summary class="m-text-7"><span data-i18n="faq.items.aftercare.question">¿Qué ocurre después de implementar una solución?</span><span class="faq__mark" aria-hidden="true"></span></summary><p class="m-text faq__answer" data-i18n="faq.items.aftercare.answer">Según las necesidades de cada proyecto, podemos plantear seguimiento, mantenimiento y mejoras para que la solución continúe aportando valor a medida que evoluciona el negocio.</p></details>
   </div>
 </section>
 
-<!-- contact: violet contact field: big "Let's talk", email, two offices with phones, and a form (placeholders) (animation: scene:contact) -->
+<!-- contact: violet contact field with WhatsApp and a form placeholder (animation: scene:contact) -->
 <section id="contact" data-8b-section="contact" aria-labelledby="contact-title">
-  <h2 class="m-text-3 contact__title" id="contact-title" style="--len:10"><span class="contact__voice">Let's talk</span><span class="m-dot" aria-hidden="true"></span></h2>
   <div class="contact__grid">
     <div class="contact__info">
-      <p class="m-text-5 contact__lead">Tell us what you are making. A real person reads every message and replies within two working days.</p>
-      <a data-8b-placeholder="email" class="contact__mail" href="mailto:hello@onda.example"><span>hello@onda.example</span></a>
-      <dl class="contact__places">
-        <div><dt class="m-text-7">Lisbon</dt><dd class="m-text">Rua do Exemplo 1<br>1200-000 Lisbon</dd><dd class="m-text"><a data-8b-placeholder="phone" href="tel:+351210000000">+351 210 000 000</a></dd></div>
-        <div><dt class="m-text-7">Brooklyn</dt><dd class="m-text">100 Example Street<br>Brooklyn, NY 11200</dd><dd class="m-text"><a data-8b-placeholder="phone" href="tel:+17180000000">+1 718 000 0000</a></dd></div>
-      </dl>
+      <h2 class="m-text-3 contact__title" id="contact-title"><span class="contact__voice" data-i18n="contact.title">¿Tienes una idea o un proyecto en mente?</span><span class="m-dot" aria-hidden="true"></span></h2>
+      <div class="contact__intro">
+        <p class="m-text-5 contact__lead" data-i18n="contact.description">Cuéntanos qué necesitas. No hace falta que tengas una solución definida para empezar.</p>
+      </div>
+      <div class="contact__direct">
+        <p class="m-text-6" data-i18n="contact.direct.label">CONTACTO</p>
+        <dl class="contact__places">
+          <div class="contact__channel"><dt class="m-text-7">WhatsApp</dt><dd class="m-text">+351 933 529 784</dd><dd><a class="m-link" href="https://wa.me/351933529784?text=Hola%2C%20he%20visto%20la%20web%20de%20Guido%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener noreferrer"><span class="m-link__label" data-i18n="contact.direct.whatsappCta">Escribir</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></dd></div>
+          <div class="contact__channel"><dt class="m-text-7">Email</dt><dd class="m-text"><a href="mailto:guido@guido.com">guido@guido.com</a></dd><dd><a class="m-link" href="mailto:guido@guido.com"><span class="m-link__label" data-i18n="contact.direct.emailCta">Enviar correo</span><svg class="m-link__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></a></dd></div>
+        </dl>
+      </div>
     </div>
     <form data-8b-placeholder="form" class="contact__form m-surface" novalidate>
       <div class="contact__pair">
-        <label class="m-text-6">Your name<input class="m-field" name="name" type="text" autocomplete="name" required></label>
-        <label class="m-text-6">Email<input class="m-field" name="email" type="email" autocomplete="email" required></label>
+        <label class="m-text-6"><span data-i18n="contact.form.name">Nombre</span><input class="m-field" name="name" type="text" autocomplete="name" required></label>
+        <label class="m-text-6"><span data-i18n="contact.form.email">Correo electrónico</span><input class="m-field" name="email" type="email" autocomplete="email" required></label>
       </div>
       <div class="contact__pair">
-        <label class="m-text-6">Company<input class="m-field" name="company" type="text" autocomplete="organization"></label>
-        <label class="m-text-6">What can we help with?<select class="m-field" name="topic"><option>A new brand</option><option>A product or app</option><option>A campaign</option><option>Something else</option></select></label>
+        <label class="m-text-6"><span data-i18n="contact.form.company">Empresa</span><input class="m-field" name="company" type="text" autocomplete="organization"></label>
+        <label class="m-text-6"><span data-i18n="contact.form.topic">¿En qué podemos ayudarte?</span><select class="m-field" name="topic"><option value="web" data-i18n="contact.form.options.web">Web o aplicación</option><option value="automation" data-i18n="contact.form.options.automation">Automatización o inteligencia artificial</option><option value="systems" data-i18n="contact.form.options.systems">Sistemas para mi empresa</option><option value="collaboration" data-i18n="contact.form.options.collaboration">Proponer una colaboración</option><option value="other" data-i18n="contact.form.options.other">Otro / No estoy seguro</option></select></label>
       </div>
-      <label class="m-text-6">A few words about the project<textarea class="m-field" name="message" rows="3" required></textarea></label>
+      <label class="m-text-6"><span data-i18n="contact.form.message">Cuéntanos qué necesitas</span><textarea class="m-field" name="message" rows="3" required></textarea></label>
       <div class="contact__actions">
-        <button class="m-btn" type="submit"><span class="m-btn__label">Send message</span></button>
-        <p class="m-text contact__status" role="status" aria-live="polite" data-success="Thank you. We will reply within two working days." data-error="Please add your name, a valid email and a few words about the project."></p>
+        <button class="m-btn" type="submit"><span class="m-btn__label" data-i18n="contact.form.submit">Enviar mensaje</span></button>
+        <p class="m-text contact__status" role="status" aria-live="polite" data-success="El formulario estará disponible próximamente. Mientras tanto, escríbenos por WhatsApp." data-error="Añade tu nombre, un correo válido y algunos detalles sobre lo que necesitas." data-i18n-success="contact.form.unavailable" data-i18n-error="contact.form.error" data-i18n="contact.form.unavailable">El formulario estará disponible próximamente. Mientras tanto, escríbenos por WhatsApp.</p>
       </div>
     </form>
   </div>
 </section>
 </main>
 
-<!-- footer: closing greeting "Bye" with the round photo full stop, link columns, newsletter, copyright and the Design: 8B credit (animation: scene:footer) -->
+<!-- footer: Guido wordmark with the round photo full stop, link columns, newsletter placeholder, copyright and the Design: 8B credit (animation: scene:footer) -->
 <footer id="footer" data-8b-section="footer">
-  <p class="m-text-2 footer__bye" style="--len:3"><span class="footer__word">Bye</span><span class="footer__period" aria-hidden="true"><span class="footer__aperture"><img class="footer__img" src="https://images.unsplash.com/photo-1754738381783-f9a2847bfef2?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cHVycGxlJTIwYWJzdHJhY3QlMjAzZCUyMHNoYXBlfGVufDF8Mnx8fDE3OTEyMDk2Mjd8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=470&amp;h=470&amp;q=60" width="1200" height="1200" alt=""><span class="footer__tint"></span></span></span></p>
+  <p class="m-text-2 footer__bye" style="--len:5"><span class="footer__word">Guido</span><span class="footer__period" aria-hidden="true"><span class="footer__aperture"><img class="footer__img" src="https://images.unsplash.com/photo-1754738381783-f9a2847bfef2?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8cHVycGxlJTIwYWJzdHJhY3QlMjAzZCUyMHNoYXBlfGVufDF8Mnx8fDE3OTEyMDk2Mjd8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=470&amp;h=470&amp;q=60" width="1200" height="1200" alt=""><span class="footer__tint"></span></span></span></p>
   <div class="footer__grid">
-    <nav class="footer__col" aria-label="Footer">
-      <p class="m-text-6 footer__label">Explore</p>
-      <a class="m-link-2" href="#work">Work</a>
-      <a class="m-link-2" href="#capabilities">Services</a>
-      <a class="m-link-2" href="#method">Approach</a>
-      <a class="m-link-2" href="#studio">Studio</a>
-      <a class="m-link-2" href="#journal">Journal</a>
+    <nav class="footer__col" aria-label="Pie de página" data-i18n-aria-label="footer.navLabel">
+      <p class="m-text-6 footer__label" data-i18n="footer.explore.label">Explorar</p>
+      <a class="m-link-2" href="#work" data-i18n="footer.explore.projects">Proyectos</a>
+      <a class="m-link-2" href="#capabilities" data-i18n="footer.explore.services">Servicios</a>
+      <a class="m-link-2" href="#method" data-i18n="footer.explore.method">Cómo trabajamos</a>
+      <a class="m-link-2" href="#studio" data-i18n="footer.explore.studio">Ideas y talento</a>
+      <a class="m-link-2" href="#journal" data-i18n="footer.explore.journal">Ideas que impulsan</a>
     </nav>
     <div class="footer__col">
-      <p class="m-text-6 footer__label">Talk</p>
-      <a data-8b-placeholder="email" class="m-link-2" href="mailto:hello@onda.example">hello@onda.example</a>
-      <a data-8b-placeholder="email" class="m-link-2" href="mailto:careers@onda.example">careers@onda.example</a>
-      <a data-8b-placeholder="phone" class="m-link-2" href="tel:+351210000000">+351 210 000 000</a>
+      <p class="m-text-6 footer__label" data-i18n="footer.contact.label">Contacto</p>
+      <span class="m-text-6">WhatsApp</span>
+      <a class="m-link-2" href="https://wa.me/351933529784">+351 933 529 784</a>
+      <span class="m-text-6">Email</span>
+      <a class="m-link-2" href="mailto:guido@guido.com">guido@guido.com</a>
     </div>
     <div class="footer__col">
-      <p class="m-text-6 footer__label">Follow</p>
-      <a data-8b-placeholder="social" class="m-link-2" href="https://www.instagram.com/">Instagram</a>
-      <a data-8b-placeholder="social" class="m-link-2" href="https://www.linkedin.com/">LinkedIn</a>
-      <a data-8b-placeholder="social" class="m-link-2" href="https://vimeo.com/">Vimeo</a>
+      <p class="m-text-6 footer__label" data-i18n="footer.follow">Síguenos</p>
+      <span class="m-link-2">Instagram</span>
+      <span class="m-link-2">LinkedIn</span>
     </div>
     <form data-8b-placeholder="form" class="footer__news" novalidate>
-      <label class="m-text-7" for="news-email">Onda in your inbox, once a month<span class="m-dot" aria-hidden="true"></span></label>
+      <label class="m-text-7" for="news-email"><span data-i18n="footer.newsletter.title">Ideas que merecen compartirse</span><span class="m-dot" aria-hidden="true"></span></label>
+      <p class="m-text-6 footer__description" data-i18n="footer.newsletter.description">Novedades, tendencias y contenido útil sobre tecnología e innovación.</p>
       <div class="footer__field">
-        <input class="m-field" id="news-email" name="email" type="email" autocomplete="email" placeholder="Your email" required>
-        <button class="m-icon" type="submit" aria-label="Subscribe"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></button>
+        <input class="m-field" id="news-email" name="email" type="email" autocomplete="email" placeholder="Tu correo electrónico" data-i18n-placeholder="footer.newsletter.placeholder" required>
+        <button class="m-icon" type="submit" aria-label="Suscripción disponible próximamente" data-i18n-aria-label="footer.newsletter.buttonLabel" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></button>
       </div>
-      <p class="m-text-6 footer__note" role="status" aria-live="polite" data-idle="No spam, one email a month, unsubscribe in one click." data-success="You are in. See you next month." data-error="Please enter a valid email address.">No spam, one email a month, unsubscribe in one click.</p>
+      <p class="m-text-6 footer__note" role="status" aria-live="polite" data-idle="Próximamente, nuevas ideas directamente en tu correo." data-success="Próximamente, nuevas ideas directamente en tu correo." data-error="Próximamente, nuevas ideas directamente en tu correo." data-i18n-idle="footer.newsletter.note" data-i18n-success="footer.newsletter.note" data-i18n-error="footer.newsletter.note" data-i18n="footer.newsletter.note">Próximamente, nuevas ideas directamente en tu correo.</p>
     </form>
   </div>
-  <div class="footer__legal m-text-6"><p>© 2026 Onda Studio · Design: <a href="https://8b.com/" style="color:inherit" data-8b-credit>8B</a></p><p>Made in Lisbon and Brooklyn</p></div>
+  <div class="footer__legal m-text-6"><p>© 2026 Guido · Design: <a href="https://8b.com/" style="color:inherit" data-8b-credit>8B</a></p><div class="footer__legal-side"><p data-i18n="footer.legal.made">Hecho por Guido.</p><div class="footer__policies"><span data-i18n="footer.legal.privacy">Política de privacidad</span><span data-i18n="footer.legal.cookies">Política de cookies</span><span data-i18n="footer.legal.notice">Aviso legal</span></div></div></div>
 </footer>
 
 <script>
@@ -1060,17 +1069,383 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       es: {
         languageSelector: 'Seleccionar idioma',
         nav: { services: 'Servicios', projects: 'Proyectos', talk: 'Hablemos' },
-        hero: { lead: 'Hacemos que la tecnología trabaje para tu negocio.' }
+        hero: { lead: 'Hacemos que la tecnología trabaje para tu negocio.' },
+        statement: {
+          titleLine1: 'Menos complejidad',
+          titleLine2: 'más posibilidades',
+          lead: 'Convertimos necesidades empresariales en soluciones digitales. Combinamos estrategia, software, automatización e inteligencia artificial para crear sistemas que ayudan a las empresas a funcionar mejor y crecer.',
+          links: { what: 'Qué hacemos', projects: 'Nuestros proyectos', method: 'Cómo trabajamos', studio: 'Conoce Guido' }
+        },
+        work: {
+          title: 'Proyectos seleccionados',
+          projects: {
+            vilaCar: {
+              category: 'Automatización digital',
+              description: 'Automatización de contenidos para redes sociales que simplifica la preparación de publicaciones.',
+              alt: 'Flujo de automatización de Vila Car en un portátil entre dos vistas móviles de Instagram'
+            },
+            nextLevel: {
+              category: 'Desarrollo web',
+              description: 'Presencia digital corporativa para comunicar servicios tecnológicos de forma clara y profesional.',
+              alt: 'Página principal de NextLevel IA Solutions con una propuesta de soluciones tecnológicas y un globo digital'
+            },
+            escalPa: {
+              category: 'Salud digital · Sin fines de lucro',
+              description: 'Iniciativa sin fines de lucro que busca facilitar el acceso a la atención médica mediante consultas virtuales.',
+              alt: 'Interfaces conceptuales de telemedicina de EscalPa en móvil y portátil'
+            },
+            legadoOs: {
+              category: 'Ecosistema digital inmersivo',
+              description: 'Un espacio digital inmersivo para organizar proyectos, conectar conocimiento y transformar la manera de trabajar.',
+              alt: 'Interfaz conceptual de Legado OS con un mapa inmersivo de proyectos y conocimiento'
+            },
+            legadoOsBank: {
+              category: 'Finanzas personales',
+              description: 'Aplicación concebida para organizar y gestionar las finanzas personales dentro del ecosistema Legado OS.',
+              alt: 'Interfaz conceptual de Legado OS Bank para finanzas personales en portátil y móvil'
+            }
+          }
+        },
+        footer: {
+          navLabel: 'Pie de página',
+          explore: { label: 'Explorar', projects: 'Proyectos', services: 'Servicios', method: 'Cómo trabajamos', studio: 'Ideas y talento', journal: 'Ideas que impulsan' },
+          contact: { label: 'Contacto' },
+          follow: 'Síguenos',
+          newsletter: {
+            title: 'Ideas que merecen compartirse',
+            description: 'Novedades, tendencias y contenido útil sobre tecnología e innovación.',
+            placeholder: 'Tu correo electrónico',
+            buttonLabel: 'Suscripción disponible próximamente',
+            note: 'Próximamente, nuevas ideas directamente en tu correo.'
+          },
+          legal: { made: 'Hecho por Guido.', privacy: 'Política de privacidad', cookies: 'Política de cookies', notice: 'Aviso legal' }
+        },
+        contact: {
+          title: '¿Tienes una idea o un proyecto en mente?',
+          description: 'Cuéntanos qué necesitas. No hace falta que tengas una solución definida para empezar.',
+          direct: { label: 'CONTACTO', whatsappCta: 'Escribir', emailCta: 'Enviar correo' },
+          form: {
+            name: 'Nombre', email: 'Correo electrónico', company: 'Empresa', topic: '¿En qué podemos ayudarte?', message: 'Cuéntanos qué necesitas', submit: 'Enviar mensaje',
+            options: { web: 'Web o aplicación', automation: 'Automatización o inteligencia artificial', systems: 'Sistemas para mi empresa', collaboration: 'Proponer una colaboración', other: 'Otro / No estoy seguro' },
+            unavailable: 'El formulario estará disponible próximamente. Mientras tanto, escríbenos por WhatsApp.',
+            error: 'Añade tu nombre, un correo válido y algunos detalles sobre lo que necesitas.'
+          }
+        },
+        faq: {
+          title: 'Buenas preguntas. Respuestas claras',
+          description: 'Cada negocio es diferente. Aquí respondemos algunas de las preguntas más habituales sobre cómo podemos ayudarte.',
+          items: {
+            services: { question: '¿Qué puede hacer Guido por mi empresa?', answer: 'Ayudamos a las empresas a trabajar mejor, vender más y crecer mediante desarrollo de software, automatización, inteligencia artificial y sistemas digitales. Analizamos cada necesidad para proponer soluciones adaptadas al negocio.' },
+            technology: { question: '¿Necesito saber de tecnología para trabajar con Guido?', answer: 'No. Nos encargamos de explicar las opciones de forma clara, ayudarte a tomar decisiones y desarrollar soluciones que resulten prácticas para tu equipo.' },
+            size: { question: '¿Trabajáis con pequeñas empresas o también con empresas grandes?', answer: 'Podemos estudiar proyectos de diferentes tamaños, desde una web o una automatización concreta hasta sistemas digitales más complejos. El alcance se define según las necesidades y recursos de cada empresa.' },
+            cost: { question: '¿Cuánto cuesta desarrollar un proyecto con Guido?', answer: 'Depende del problema que debamos resolver, la complejidad de la solución y el alcance del trabajo. Primero entendemos lo que necesitas y después preparamos una propuesta adaptada.' },
+            aftercare: { question: '¿Qué ocurre después de implementar una solución?', answer: 'Según las necesidades de cada proyecto, podemos plantear seguimiento, mantenimiento y mejoras para que la solución continúe aportando valor a medida que evoluciona el negocio.' }
+          }
+        },
+        journal: {
+          title: 'Ideas que impulsan',
+          description: 'Exploramos ideas, tendencias y soluciones tecnológicas que pueden transformar la manera de trabajar, innovar y hacer crecer un negocio.',
+          cards: {
+            ai: { category: 'INTELIGENCIA ARTIFICIAL', title: 'La IA más allá de las conversaciones.', description: 'Descubre cómo la inteligencia artificial puede ayudar a analizar información, automatizar tareas y mejorar procesos empresariales.' },
+            automation: { category: 'AUTOMATIZACIÓN', title: 'Menos tareas. Más resultados.', description: 'Procesos que pueden automatizarse para ahorrar tiempo, reducir trabajo manual y mejorar las operaciones.' },
+            digital: { category: 'DESARROLLO DIGITAL', title: 'Tu negocio puede hacer más.', description: 'Ideas para convertir páginas web, aplicaciones y plataformas digitales en herramientas útiles para las empresas.' },
+            innovation: { category: 'INNOVACIÓN', title: 'El futuro ya está en marcha.', description: 'Tendencias, avances y nuevas posibilidades tecnológicas que merece la pena conocer.' }
+          }
+        },
+        studio: {
+          title: 'Ideas y talento',
+          description: 'En Guido combinamos estrategia, desarrollo tecnológico y colaboración especializada para construir soluciones que responden a las necesidades de cada negocio.',
+          collaborations: {
+            title: 'Colaboremos.',
+            description: 'Creemos que las mejores soluciones nacen cuando se unen diferentes ideas, experiencias y capacidades. En Guido estamos abiertos a colaborar con profesionales y empresas que quieran crear, innovar y desarrollar proyectos con impacto real.',
+            cta: 'Hablemos de colaborar'
+          }
+        },
+        method: {
+          title: 'Cómo trabajamos',
+          description: 'No empezamos por la tecnología. Empezamos por entender tu negocio, identificar qué necesita mejorar y construir la solución adecuada.',
+          steps: {
+            understand: { title: '01 — Entender', description: 'Analizamos tu negocio, tus objetivos y tus procesos para identificar problemas reales y oportunidades de mejora.' },
+            design: { title: '02 — Diseñar', description: 'Definimos la solución, las herramientas necesarias y los resultados que queremos conseguir antes de desarrollar.' },
+            build: { title: '03 — Construir', description: 'Desarrollamos, integramos y ponemos en funcionamiento la solución, comprobando que responda a las necesidades del negocio.' },
+            evolve: { title: '04 — Evolucionar', description: 'Medimos los resultados, identificamos mejoras y evolucionamos la solución según las necesidades de cada empresa.' }
+          }
+        },
+        capabilities: {
+          title: 'Qué hacemos',
+          description: 'Diseñamos y construimos soluciones tecnológicas que ayudan a las empresas a trabajar mejor, vender más y crecer.',
+          services: {
+            web: { title: 'Desarrollo web y aplicaciones', description: 'Creamos páginas web, aplicaciones y plataformas digitales que ayudan a las empresas a captar clientes, ofrecer servicios y crecer.', alt: 'Cajas impresas rosas y verdes apiladas', tags: { one: 'Webs corporativas', two: 'Aplicaciones', three: 'E-commerce', four: 'Plataformas' } },
+            automation: { title: 'Automatización de procesos', description: 'Conectamos herramientas y automatizamos tareas repetitivas para reducir trabajo manual, ahorrar tiempo y mejorar las operaciones.', alt: 'Una mano sostiene un teléfono con una aplicación para pedir comida', tags: { one: 'n8n', two: 'Integraciones', three: 'Flujos de trabajo', four: 'APIs' } },
+            ai: { title: 'Inteligencia artificial aplicada', description: 'Incorporamos inteligencia artificial en procesos reales para analizar información, asistir a los equipos y automatizar operaciones.', alt: 'Un gran anuncio en la fachada de un edificio urbano', tags: { one: 'Agentes IA', two: 'Asistentes', three: 'IA generativa', four: 'Modelos locales' } },
+            systems: { title: 'Sistemas empresariales', description: 'Diseñamos sistemas que conectan clientes, información y operaciones para que las empresas trabajen de forma más organizada y eficiente.', alt: 'Una pared cubierta de notas adhesivas de un taller de investigación', tags: { one: 'CRM', two: 'Dashboards', three: 'Gestión interna', four: 'Bases de datos' } },
+            growth: { title: 'Crecimiento digital', description: 'Construimos soluciones digitales que ayudan a las empresas a atraer oportunidades comerciales, gestionar contactos y convertirlos en clientes.', alt: 'Estelas de luz violeta sobre un fondo oscuro', tags: { one: 'Captación digital', two: 'Landing pages', three: 'Embudos de venta', four: 'Seguimiento' } }
+          }
+        },
+        again: {
+          title: 'Tecnología que evoluciona contigo',
+          chapters: {
+            one: { label: 'Capítulo 01', title: 'Todo empieza por entender', description: 'Antes de crear una solución, necesitamos comprender el negocio y lo que realmente necesita mejorar.' },
+            two: { label: 'Capítulo 02', title: 'Después, encontramos el camino', description: 'Conectamos estrategia y tecnología para transformar problemas reales en oportunidades.' },
+            three: { label: 'Capítulo 03', title: 'Construimos algo que funciona', description: 'Diseñamos sistemas que simplifican el trabajo y aportan valor desde su implementación.' },
+            four: { label: 'Capítulo 04', title: 'El negocio sigue avanzando', description: 'Las necesidades cambian. La tecnología debe poder adaptarse y acompañar ese crecimiento.' },
+            five: { label: 'Capítulo 05', title: 'Y volvemos a mejorar', description: 'Medimos, aprendemos y optimizamos. Porque una buena solución no termina cuando se entrega.' }
+          }
+        }
       },
       'pt-PT': {
         languageSelector: 'Selecionar idioma',
         nav: { services: 'Serviços', projects: 'Projetos', talk: 'Fale connosco' },
-        hero: { lead: 'Fazemos com que a tecnologia trabalhe para o seu negócio.' }
+        hero: { lead: 'Fazemos com que a tecnologia trabalhe para o seu negócio.' },
+        statement: {
+          titleLine1: 'Menos complexidade',
+          titleLine2: 'mais possibilidades',
+          lead: 'Transformamos necessidades empresariais em soluções digitais. Combinamos estratégia, software, automatização e inteligência artificial para criar sistemas que ajudam as empresas a funcionar melhor e a crescer.',
+          links: { what: 'O que fazemos', projects: 'Os nossos projetos', method: 'Como trabalhamos', studio: 'Conheça Guido' }
+        },
+        work: {
+          title: 'Projetos selecionados',
+          projects: {
+            vilaCar: {
+              category: 'Automatização digital',
+              description: 'Automatização de conteúdos para redes sociais que simplifica a preparação de publicações.',
+              alt: 'Fluxo de automatização da Vila Car num portátil entre duas vistas móveis do Instagram'
+            },
+            nextLevel: {
+              category: 'Desenvolvimento web',
+              description: 'Presença digital corporativa para comunicar serviços tecnológicos de forma clara e profissional.',
+              alt: 'Página inicial da NextLevel IA Solutions com uma proposta de soluções tecnológicas e um globo digital'
+            },
+            escalPa: {
+              category: 'Saúde digital · Sem fins lucrativos',
+              description: 'Iniciativa sem fins lucrativos que procura facilitar o acesso aos cuidados de saúde através de consultas virtuais.',
+              alt: 'Interfaces conceptuais de telemedicina da EscalPa num telemóvel e num portátil'
+            },
+            legadoOs: {
+              category: 'Ecossistema digital imersivo',
+              description: 'Um espaço digital imersivo para organizar projetos, ligar conhecimento e transformar a forma de trabalhar.',
+              alt: 'Interface conceptual do Legado OS com um mapa imersivo de projetos e conhecimento'
+            },
+            legadoOsBank: {
+              category: 'Finanças pessoais',
+              description: 'Aplicação concebida para organizar e gerir as finanças pessoais no ecossistema Legado OS.',
+              alt: 'Interface conceptual do Legado OS Bank para finanças pessoais num portátil e num telemóvel'
+            }
+          }
+        },
+        footer: {
+          navLabel: 'Rodapé',
+          explore: { label: 'Explorar', projects: 'Projetos', services: 'Serviços', method: 'Como trabalhamos', studio: 'Ideias e talento', journal: 'Ideias que impulsionam' },
+          contact: { label: 'Contacto' },
+          follow: 'Segue-nos',
+          newsletter: {
+            title: 'Ideias que merecem ser partilhadas',
+            description: 'Novidades, tendências e conteúdo útil sobre tecnologia e inovação.',
+            placeholder: 'O teu email',
+            buttonLabel: 'Subscrição disponível em breve',
+            note: 'Em breve, novas ideias diretamente no teu email.'
+          },
+          legal: { made: 'Feito pela Guido.', privacy: 'Política de privacidade', cookies: 'Política de cookies', notice: 'Aviso legal' }
+        },
+        contact: {
+          title: 'Tens uma ideia ou um projeto em mente?',
+          description: 'Conta-nos do que precisas. Não é preciso teres uma solução definida para começar.',
+          direct: { label: 'CONTACTO', whatsappCta: 'Escrever', emailCta: 'Enviar email' },
+          form: {
+            name: 'Nome', email: 'Email', company: 'Empresa', topic: 'Como podemos ajudar?', message: 'Conta-nos do que precisas', submit: 'Enviar mensagem',
+            options: { web: 'Site ou aplicação', automation: 'Automatização ou inteligência artificial', systems: 'Sistemas para a minha empresa', collaboration: 'Propor uma colaboração', other: 'Outro / Não tenho a certeza' },
+            unavailable: 'O formulário estará disponível em breve. Entretanto, escreve-nos pelo WhatsApp.',
+            error: 'Indica o teu nome, um email válido e alguns detalhes sobre o que precisas.'
+          }
+        },
+        faq: {
+          title: 'Boas perguntas. Respostas claras',
+          description: 'Cada negócio é diferente. Aqui respondemos a algumas das perguntas mais frequentes sobre como podemos ajudar.',
+          items: {
+            services: { question: 'O que pode a Guido fazer pela minha empresa?', answer: 'Ajudamos as empresas a trabalhar melhor, vender mais e crescer através do desenvolvimento de software, automatização, inteligência artificial e sistemas digitais. Analisamos cada necessidade para propor soluções adaptadas ao negócio.' },
+            technology: { question: 'Preciso de perceber de tecnologia para trabalhar com a Guido?', answer: 'Não. Encarregamo-nos de explicar as opções de forma clara, ajudar-te a tomar decisões e desenvolver soluções práticas para a tua equipa.' },
+            size: { question: 'Trabalham com pequenas empresas ou também com grandes empresas?', answer: 'Podemos analisar projetos de diferentes dimensões, desde um site ou uma automatização específica até sistemas digitais mais complexos. O âmbito é definido de acordo com as necessidades e os recursos de cada empresa.' },
+            cost: { question: 'Quanto custa desenvolver um projeto com a Guido?', answer: 'Depende do problema que temos de resolver, da complexidade da solução e do âmbito do trabalho. Primeiro compreendemos o que precisas e depois preparamos uma proposta adaptada.' },
+            aftercare: { question: 'O que acontece depois de implementar uma solução?', answer: 'Consoante as necessidades de cada projeto, podemos propor acompanhamento, manutenção e melhorias para que a solução continue a gerar valor à medida que o negócio evolui.' }
+          }
+        },
+        journal: {
+          title: 'Ideias que impulsionam',
+          description: 'Exploramos ideias, tendências e soluções tecnológicas que podem transformar a forma de trabalhar, inovar e fazer crescer um negócio.',
+          cards: {
+            ai: { category: 'INTELIGÊNCIA ARTIFICIAL', title: 'A IA para além das conversas.', description: 'Descubra como a inteligência artificial pode ajudar a analisar informação, automatizar tarefas e melhorar processos empresariais.' },
+            automation: { category: 'AUTOMATIZAÇÃO', title: 'Menos tarefas. Mais resultados.', description: 'Processos que podem ser automatizados para poupar tempo, reduzir o trabalho manual e melhorar as operações.' },
+            digital: { category: 'DESENVOLVIMENTO DIGITAL', title: 'O teu negócio pode fazer mais.', description: 'Ideias para transformar sites, aplicações e plataformas digitais em ferramentas úteis para as empresas.' },
+            innovation: { category: 'INOVAÇÃO', title: 'O futuro já está em marcha.', description: 'Tendências, avanços e novas possibilidades tecnológicas que vale a pena conhecer.' }
+          }
+        },
+        studio: {
+          title: 'Ideias e talento',
+          description: 'Na Guido, combinamos estratégia, desenvolvimento tecnológico e colaboração especializada para criar soluções que respondem às necessidades de cada negócio.',
+          collaborations: {
+            title: 'Vamos colaborar.',
+            description: 'Acreditamos que as melhores soluções nascem quando se juntam diferentes ideias, experiências e capacidades. Na Guido, estamos abertos a colaborar com profissionais e empresas que queiram criar, inovar e desenvolver projetos com impacto real.',
+            cta: 'Vamos falar de colaboração'
+          }
+        },
+        method: {
+          title: 'Como trabalhamos',
+          description: 'Não começamos pela tecnologia. Começamos por compreender o teu negócio, identificar o que precisa de melhorar e construir a solução adequada.',
+          steps: {
+            understand: { title: '01 — Compreender', description: 'Analisamos o teu negócio, os teus objetivos e os teus processos para identificar problemas reais e oportunidades de melhoria.' },
+            design: { title: '02 — Conceber', description: 'Definimos a solução, as ferramentas necessárias e os resultados que pretendemos alcançar antes de iniciar o desenvolvimento.' },
+            build: { title: '03 — Construir', description: 'Desenvolvemos, integramos e colocamos a solução em funcionamento, verificando que responde às necessidades do negócio.' },
+            evolve: { title: '04 — Evoluir', description: 'Medimos os resultados, identificamos melhorias e evoluímos a solução de acordo com as necessidades de cada empresa.' }
+          }
+        },
+        capabilities: {
+          title: 'O que fazemos',
+          description: 'Concebemos e desenvolvemos soluções tecnológicas que ajudam as empresas a trabalhar melhor, vender mais e crescer.',
+          services: {
+            web: { title: 'Desenvolvimento web e aplicações', description: 'Criamos sites, aplicações e plataformas digitais que ajudam as empresas a captar clientes, prestar serviços e crescer.', alt: 'Caixas impressas cor-de-rosa e verdes empilhadas', tags: { one: 'Sites empresariais', two: 'Aplicações', three: 'Comércio eletrónico', four: 'Plataformas' } },
+            automation: { title: 'Automatização de processos', description: 'Ligamos ferramentas e automatizamos tarefas repetitivas para reduzir o trabalho manual, poupar tempo e melhorar as operações.', alt: 'Uma mão segura um telemóvel com uma aplicação para encomendar comida', tags: { one: 'n8n', two: 'Integrações', three: 'Fluxos de trabalho', four: 'APIs' } },
+            ai: { title: 'Inteligência artificial aplicada', description: 'Integramos inteligência artificial em processos reais para analisar informação, apoiar as equipas e automatizar operações.', alt: 'Um grande anúncio na fachada de um edifício urbano', tags: { one: 'Agentes de IA', two: 'Assistentes', three: 'IA generativa', four: 'Modelos locais' } },
+            systems: { title: 'Sistemas empresariais', description: 'Concebemos sistemas que ligam clientes, informação e operações para que as empresas trabalhem de forma mais organizada e eficiente.', alt: 'Uma parede coberta de notas adesivas de um workshop de investigação', tags: { one: 'CRM', two: 'Dashboards', three: 'Gestão interna', four: 'Bases de dados' } },
+            growth: { title: 'Crescimento digital', description: 'Criamos soluções digitais que ajudam as empresas a atrair oportunidades comerciais, gerir contactos e convertê-los em clientes.', alt: 'Rastos de luz violeta sobre um fundo escuro', tags: { one: 'Captação digital', two: 'Landing pages', three: 'Funis de vendas', four: 'Acompanhamento' } }
+          }
+        },
+        again: {
+          title: 'Tecnologia que evolui consigo',
+          chapters: {
+            one: { label: 'Capítulo 01', title: 'Tudo começa por compreender', description: 'Antes de criar uma solução, precisamos de compreender o negócio e aquilo que realmente precisa de melhorar.' },
+            two: { label: 'Capítulo 02', title: 'Depois, encontramos o caminho', description: 'Ligamos estratégia e tecnologia para transformar problemas reais em oportunidades.' },
+            three: { label: 'Capítulo 03', title: 'Construímos algo que funciona', description: 'Concebemos sistemas que simplificam o trabalho e geram valor desde a sua implementação.' },
+            four: { label: 'Capítulo 04', title: 'O negócio continua a avançar', description: 'As necessidades mudam. A tecnologia deve conseguir adaptar-se e acompanhar esse crescimento.' },
+            five: { label: 'Capítulo 05', title: 'E voltamos a melhorar', description: 'Medimos, aprendemos e otimizamos. Porque uma boa solução não termina quando é entregue.' }
+          }
+        }
       },
       en: {
         languageSelector: 'Select language',
         nav: { services: 'Services', projects: 'Projects', talk: "Let's talk" },
-        hero: { lead: 'We make technology work for your business.' }
+        hero: { lead: 'We make technology work for your business.' },
+        statement: {
+          titleLine1: 'Less complexity',
+          titleLine2: 'more possibilities',
+          lead: 'We turn business needs into digital solutions. We combine strategy, software, automation, and artificial intelligence to create systems that help companies operate more efficiently and grow.',
+          links: { what: 'What we do', projects: 'Our projects', method: 'How we work', studio: 'Meet Guido' }
+        },
+        work: {
+          title: 'Selected projects',
+          projects: {
+            vilaCar: {
+              category: 'Digital automation',
+              description: 'Social media content automation that streamlines publication preparation.',
+              alt: 'Vila Car automation workflow on a laptop between two mobile Instagram views'
+            },
+            nextLevel: {
+              category: 'Web development',
+              description: 'A corporate digital presence designed to communicate technology services clearly and professionally.',
+              alt: 'NextLevel IA Solutions homepage presenting technology solutions alongside a digital globe'
+            },
+            escalPa: {
+              category: 'Digital health · Nonprofit',
+              description: 'A nonprofit initiative seeking to make healthcare more accessible through virtual consultations.',
+              alt: 'Conceptual EscalPa telemedicine interfaces shown on a phone and laptop'
+            },
+            legadoOs: {
+              category: 'Immersive digital ecosystem',
+              description: 'An immersive digital space for organizing projects, connecting knowledge, and transforming how people work.',
+              alt: 'Conceptual Legado OS interface with an immersive map of projects and knowledge'
+            },
+            legadoOsBank: {
+              category: 'Personal finance',
+              description: 'An application conceived to organize and manage personal finances within the Legado OS ecosystem.',
+              alt: 'Conceptual Legado OS Bank personal finance interface shown on a laptop and phone'
+            }
+          }
+        },
+        footer: {
+          navLabel: 'Footer',
+          explore: { label: 'Explore', projects: 'Projects', services: 'Services', method: 'How we work', studio: 'Ideas and talent', journal: 'Ideas that drive progress' },
+          contact: { label: 'Contact' },
+          follow: 'Follow us',
+          newsletter: {
+            title: 'Ideas worth sharing',
+            description: 'News, trends and useful content about technology and innovation.',
+            placeholder: 'Your email address',
+            buttonLabel: 'Subscription coming soon',
+            note: 'Coming soon, new ideas delivered straight to your inbox.'
+          },
+          legal: { made: 'Made by Guido.', privacy: 'Privacy policy', cookies: 'Cookie policy', notice: 'Legal notice' }
+        },
+        contact: {
+          title: 'Do you have an idea or a project in mind?',
+          description: "Tell us what you need. You don't need to have a defined solution to get started.",
+          direct: { label: 'CONTACT', whatsappCta: 'Write', emailCta: 'Send email' },
+          form: {
+            name: 'Name', email: 'Email', company: 'Company', topic: 'How can we help?', message: 'Tell us what you need', submit: 'Send message',
+            options: { web: 'Website or application', automation: 'Automation or artificial intelligence', systems: 'Systems for my company', collaboration: 'Propose a collaboration', other: "Other / I'm not sure" },
+            unavailable: 'The form will be available soon. In the meantime, message us on WhatsApp.',
+            error: 'Please enter your name, a valid email and a few details about what you need.'
+          }
+        },
+        faq: {
+          title: 'Good questions. Clear answers',
+          description: 'Every business is different. Here we answer some of the most common questions about how we can help.',
+          items: {
+            services: { question: 'What can Guido do for my company?', answer: 'We help companies work better, sell more and grow through software development, automation, artificial intelligence and digital systems. We analyze each need to propose solutions tailored to the business.' },
+            technology: { question: 'Do I need to understand technology to work with Guido?', answer: 'No. We explain the options clearly, help you make decisions and develop solutions that are practical for your team.' },
+            size: { question: 'Do you work with small businesses as well as large companies?', answer: 'We can consider projects of different sizes, from a website or a specific automation to more complex digital systems. The scope is defined according to each company’s needs and resources.' },
+            cost: { question: 'How much does it cost to develop a project with Guido?', answer: 'It depends on the problem we need to solve, the complexity of the solution and the scope of the work. First, we understand what you need and then prepare a tailored proposal.' },
+            aftercare: { question: 'What happens after a solution is implemented?', answer: "Depending on each project's needs, we can propose follow-up, maintenance and improvements so the solution continues to deliver value as the business evolves." }
+          }
+        },
+        journal: {
+          title: 'Ideas that drive progress',
+          description: 'We explore ideas, trends and technology solutions that can transform how a business works, innovates and grows.',
+          cards: {
+            ai: { category: 'ARTIFICIAL INTELLIGENCE', title: 'AI beyond conversations.', description: 'Discover how artificial intelligence can help analyze information, automate tasks and improve business processes.' },
+            automation: { category: 'AUTOMATION', title: 'Fewer tasks. More results.', description: 'Processes that can be automated to save time, reduce manual work and improve operations.' },
+            digital: { category: 'DIGITAL DEVELOPMENT', title: 'Your business can do more.', description: 'Ideas for turning websites, applications and digital platforms into useful tools for businesses.' },
+            innovation: { category: 'INNOVATION', title: 'The future is already underway.', description: 'Trends, advances and new technological possibilities worth knowing about.' }
+          }
+        },
+        studio: {
+          title: 'Ideas and talent',
+          description: "At Guido, we combine strategy, technology development and specialized collaboration to build solutions that meet each business's needs.",
+          collaborations: {
+            title: "Let's collaborate.",
+            description: 'We believe the best solutions emerge when different ideas, experiences and capabilities come together. At Guido, we are open to collaborating with professionals and companies that want to create, innovate and develop projects with real impact.',
+            cta: "Let's talk about collaborating"
+          }
+        },
+        method: {
+          title: 'How we work',
+          description: "We don't start with technology. We start by understanding your business, identifying what needs to improve and building the right solution.",
+          steps: {
+            understand: { title: '01 — Understand', description: 'We analyse your business, goals and processes to identify real problems and opportunities for improvement.' },
+            design: { title: '02 — Design', description: 'We define the solution, the tools needed and the outcomes we want to achieve before development begins.' },
+            build: { title: '03 — Build', description: "We develop, integrate and deploy the solution, making sure it meets the business's needs." },
+            evolve: { title: '04 — Evolve', description: "We measure results, identify improvements and evolve the solution as each business's needs change." }
+          }
+        },
+        capabilities: {
+          title: 'What we do',
+          description: 'We design and build technology solutions that help businesses work better, sell more and grow.',
+          services: {
+            web: { title: 'Web development and applications', description: 'We create websites, applications and digital platforms that help businesses attract customers, deliver services and grow.', alt: 'Pink and green printed boxes stacked together', tags: { one: 'Corporate websites', two: 'Applications', three: 'E-commerce', four: 'Platforms' } },
+            automation: { title: 'Process automation', description: 'We connect tools and automate repetitive tasks to reduce manual work, save time and improve operations.', alt: 'A hand holding a phone that shows a food ordering app', tags: { one: 'n8n', two: 'Integrations', three: 'Workflows', four: 'APIs' } },
+            ai: { title: 'Applied artificial intelligence', description: 'We integrate artificial intelligence into real processes to analyze information, support teams and automate operations.', alt: 'A large advertisement on the side of a city building', tags: { one: 'AI agents', two: 'Assistants', three: 'Generative AI', four: 'Local models' } },
+            systems: { title: 'Business systems', description: 'We design systems that connect customers, information and operations so businesses can work in a more organized and efficient way.', alt: 'A wall of printed sticky notes from a research workshop', tags: { one: 'CRM', two: 'Dashboards', three: 'Internal management', four: 'Databases' } },
+            growth: { title: 'Digital growth', description: 'We build digital solutions that help businesses attract sales opportunities, manage contacts and convert them into customers.', alt: 'Violet light trails curving across a dark background', tags: { one: 'Digital acquisition', two: 'Landing pages', three: 'Sales funnels', four: 'Follow-up' } }
+          }
+        },
+        again: {
+          title: 'Technology that evolves with you',
+          chapters: {
+            one: { label: 'Chapter 01', title: 'It all starts with understanding', description: 'Before creating a solution, we need to understand the business and what truly needs to improve.' },
+            two: { label: 'Chapter 02', title: 'Then, we find the way forward', description: 'We connect strategy and technology to turn real problems into opportunities.' },
+            three: { label: 'Chapter 03', title: 'We build something that works', description: 'We design systems that simplify work and deliver value from implementation.' },
+            four: { label: 'Chapter 04', title: 'The business keeps moving forward', description: 'Needs change. Technology must be able to adapt and support that growth.' },
+            five: { label: 'Chapter 05', title: 'And we improve again', description: "We measure, learn, and optimize. Because a good solution doesn't end when it's delivered." }
+          }
+        }
       }
     }
   };
@@ -1106,6 +1481,26 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       const value = getTranslation(language, element.dataset.i18nAriaLabel);
       if (typeof value === 'string') element.setAttribute('aria-label', value);
     });
+    document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nAlt);
+      if (typeof value === 'string') element.setAttribute('alt', value);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nPlaceholder);
+      if (typeof value === 'string') element.setAttribute('placeholder', value);
+    });
+    document.querySelectorAll('[data-i18n-idle]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nIdle);
+      if (typeof value === 'string') element.dataset.idle = value;
+    });
+    document.querySelectorAll('[data-i18n-success]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nSuccess);
+      if (typeof value === 'string') element.dataset.success = value;
+    });
+    document.querySelectorAll('[data-i18n-error]').forEach(element => {
+      const value = getTranslation(language, element.dataset.i18nError);
+      if (typeof value === 'string') element.dataset.error = value;
+    });
     document.querySelectorAll('[data-language]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.language === language));
     });
@@ -1121,6 +1516,31 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   const initialLanguage = readPreference() || detectLanguage();
   setLanguage(initialLanguage);
   window.GuidoI18n = Object.freeze({ ...config, setLanguage });
+})();
+</script>
+<script>
+(() => {
+  const lead = document.querySelector('#statement .statement__lead');
+  const localized = lead.querySelector('[data-i18n="statement.lead"]');
+  document.addEventListener('guido:languagechange', () => {
+    if (!lead.style.getPropertyValue('--n')) return;
+    const fragment = document.createDocumentFragment();
+    let index = 0;
+    localized.textContent.split(/(\s+)/).forEach(piece => {
+      if (!piece) return;
+      if (/^\s+$/u.test(piece)) {
+        fragment.append(piece);
+        return;
+      }
+      const word = document.createElement('span');
+      word.className = 'w';
+      word.style.setProperty('--i', index++);
+      word.textContent = piece;
+      fragment.append(word);
+    });
+    localized.replaceChildren(fragment);
+    lead.style.setProperty('--n', index);
+  });
 })();
 </script>
 <script data-8b-part="section-script:navigation">
@@ -1208,8 +1628,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
     event.preventDefault();
     const ok = form.checkValidity();
     status.textContent = ok ? status.dataset.success : status.dataset.error;
-    if (ok) form.reset();
-    else form.querySelector(':invalid')?.focus();
+    if (!ok) form.querySelector(':invalid')?.focus();
   });
 })();
 </script>
@@ -1220,9 +1639,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   const note = form.querySelector('.footer__note');
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const ok = form.checkValidity();
-    note.textContent = ok ? note.dataset.success : note.dataset.error;
-    if (ok) form.reset();
+    note.textContent = note.dataset.idle;
   });
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => footer.classList.toggle('is-offscreen', !entry.isIntersecting)).observe(footer);
 })();
